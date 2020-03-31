@@ -7,6 +7,6 @@
 ## UF3 Desplegament d'aplicacions web
 
 * [DNS](uf3-desplegament-daplicacions-web/uf3.desplegament-daplicacions-web.md)
-* [Desplegament d'aplicacions en Heroku](uf3-desplegament-daplicacions-web/untitled.md)
+* [Desplegament d'aplicacions en Heroku](uf3-desplegament-daplicacions-web/desplegament-dapps-heroku.md)
 * [UF4. Control de versions i documentació](uf4.-control-de-versions-i-documentacio.md)
 
