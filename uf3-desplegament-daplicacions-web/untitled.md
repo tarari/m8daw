@@ -26,3 +26,27 @@ Un cop dins, cal crear un fitxer composer.json amb les dependències del project
 }
 ```
 
+Tanmateix, iniciem repositori local en git i fem un commit
+
+```javascript
+git init
+git add .
+git commit -am "First commit heroku project"
+```
+
+Posteriorment iniciem sessió en heroku amb `heroku login`
+
+A continació creem el projecte heroku
+
+```javascript
+heroku create [nom_aplicació]
+```
+
+### Add-on mysql
+
+Pugem l'esquema al Gestor ClearDB:
+
+```javascript
+$ mysql -u b9f7f41a06f314 -h us-cdbr-iron-east-01.cleardb.net -p heroku_fb40bdc559eaffa < projecte.sql
+```
+
