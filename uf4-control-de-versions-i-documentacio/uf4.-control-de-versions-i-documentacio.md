@@ -8,11 +8,11 @@ description: >-
 
 
 
-### Què es Git?
+## Què es Git?
 
-Git es un sistema de control de versiones para seguir los cambios de archivos entre varios usuarios. Es principalmente usado para el manejo de código fuente dentro del desarrollo de software pero también puedo ser usado para manejar los cambios de cualquier tipo de archivo. Como sistema distribuido de control de revisiones está dirigido a la velocidad, integridad de los datos, soporte para flujos de trabajo distribuidos y no lineales\[1\].
+Git és un sistema de control de versions per seguir els canvis d'arxius entre diversos usuaris. És principalment usat per al maneig de codi font dins el desenvolupament de programari però també pot ser usat per manejar els canvis de qualsevol tipus d'arxiu. Com a sistema distribuït de control de revisions, està dirigit a la velocitat, integritat de les dades, suport per a fluxos de treball distribuïts.
 
-#### Fundamentos de Git
+#### Fundaments de Git
 
 **Instantáneas, no diferencias**
 
