@@ -44,7 +44,7 @@ Aquest model es va posar molt de moda arran de la forja GitHub que es veurà mé
 
 #### Flux de treball amb Dictador i tinents  <a id="flujo-de-trabajo-con-dictador-y-tenientes"></a>
 
-És una variant de el flux de treball amb múltiples repositoris. S'utilitza generalment en projectes molt grans, amb centenars de col·laboradors. Un exemple molt conegut és el de el nucli de Linux. Uns gestors d'integració s'encarreguen de parts concretes de l'repositori; i s'anomenen tinents. Tots els tinents rendeixen comptes a un gestor d'integració; conegut com el dictador benvolent. El repositori de l'dictador benevolent és el repositori de referència, de què recuperen \(pull\) tots els col·laboradors.
+És una variant de el flux de treball amb múltiples repositoris. S'utilitza generalment en projectes molt grans, amb centenars de col·laboradors. Un exemple molt conegut és el de el nucli de Linux. Uns gestors d'integració s'encarreguen de parts concretes de l'repositori; i s'anomenen tinents. Tots els tinents rendeixen comptes a un gestor d'integració; conegut com el dictador benevolent. El repositori de l'dictador benevolent és el repositori de referència, de què recuperen \(**pull**\) tots els col·laboradors.
 
 ![ Flux de treball amb Dictador i tinents ](https://aulasoftwarelibre.github.io/taller-de-git/images/flujo-dictador.png)
 
@@ -283,7 +283,7 @@ Per indicar-li a _git_ que ha d'ignorar un arxiu, es pot crear un fitxer anomena
 
 Cada tipus de projecte genera els seus fitxers temporals, així que per a cada projecte hi ha un `.gitignore`apropiat. Hi repositoris que ja tenen creades plantilles. Podeu trobar un en [https://github.com/github/gitignore](https://github.com/github/gitignore)
 
-#### Ignorant arxius globalment [¶](https://aulasoftwarelibre.github.io/taller-de-git/usobasico/#ignorando-archivos-globalmente) <a id="ignorando-archivos-globalmente"></a>
+#### Ignorant arxius globalment  <a id="ignorando-archivos-globalmente"></a>
 
 Si bé, els arxius que hem ficat en `.gitignore`, han de ser aquells fitxers temporals o de configuració que es poden crear durant les fases de compilació o execució de el programa, en ocasions hi haurà altres fitxers que tampoc hem d'introduir en el repositori i que són recurrents en tots els projectes. En aquest cas, és més útil tenir un _gitignore_ que sigui global a tots els nostres projectes. Aquesta configuració seria complementària a la que ja tenim. Exemples del que es pot ignorar de forma global són els fitxers temporals de sistema operatiu \( `*~`, `.nfs*`\) i els que generen els entorns de desenvolupament.
 
@@ -299,9 +299,9 @@ Ara podem crear un arxiu anomenat `.gitignore_global`en l'arrel del nostre compt
 | :--- | :--- |
 
 
-### Treballant amb l'historial [¶](https://aulasoftwarelibre.github.io/taller-de-git/usobasico/#trabajando-con-el-historial) <a id="trabajando-con-el-historial"></a>
+### Treballant amb l'historial  <a id="trabajando-con-el-historial"></a>
 
-#### Observant els canvis [¶](https://aulasoftwarelibre.github.io/taller-de-git/usobasico/#observando-los-cambios) <a id="observando-los-cambios"></a>
+#### Observant els canvis  <a id="observando-los-cambios"></a>
 
 Amb l'ordre `git log`podem veure tots els canvis que hem fet:
 
@@ -337,7 +337,7 @@ Pots configurar fins i tot àlies per abreujar ordres. Alguns exemples d'àlies 
 | :--- | :--- |
 
 
-#### Recuperant versions anteriors [¶](https://aulasoftwarelibre.github.io/taller-de-git/usobasico/#recuperando-versiones-anteriores) <a id="recuperando-versiones-anteriores"></a>
+#### Recuperant versions anteriors  <a id="recuperando-versiones-anteriores"></a>
 
 Cada canvi és etiquetat per un hash, per poder tornar a aquest moment de l'estat de el projecte s'usa l'ordre `git checkout`.
 
@@ -347,7 +347,7 @@ Cada canvi és etiquetat per un hash, per poder tornar a aquest moment de l'esta
 
 L'avís que ens surt ens indica que estem en un estat on no treballem en cap branca concreta. Això significa que els canvis que fem podrien "perdre" perquè si no són guardats en una nova branca, en principi no podríem tornar a recuperar-los. Cal pensar que Git és com un arbre on un node té informació del seu node pare, no dels seus nodes fills, de manera que sempre necessitaríem informació d'on es troben els nodes finals o d'una altra manera no podríem accedir-hi.
 
-#### Tornar a l'última versió de la branca master. [¶](https://aulasoftwarelibre.github.io/taller-de-git/usobasico/#volver-a-la-ultima-version-de-la-rama-master) <a id="volver-a-la-ultima-version-de-la-rama-master"></a>
+#### Tornar a l'última versió de la branca master.  <a id="volver-a-la-ultima-version-de-la-rama-master"></a>
 
 Fem servir `git checkout`indicant el nom de la branca:
 
@@ -355,7 +355,7 @@ Fem servir `git checkout`indicant el nom de la branca:
 | :--- | :--- |
 
 
-#### Etiquetant versions [¶](https://aulasoftwarelibre.github.io/taller-de-git/usobasico/#etiquetando-versiones) <a id="etiquetando-versiones"></a>
+#### Etiquetant versions  <a id="etiquetando-versiones"></a>
 
 Per poder recuperar versions concretes en la història de l'repositori, podem etiquetar, la qual cosa és més fàcil de fer servir un hash. Per això farem servir l'ordre `git tag`.
 
@@ -381,7 +381,7 @@ I per veure-les en l'historial:
 | :--- | :--- |
 
 
-#### Esborrar etiquetes [¶](https://aulasoftwarelibre.github.io/taller-de-git/usobasico/#borrar-etiquetas) <a id="borrar-etiquetas"></a>
+#### Esborrar etiquetes  <a id="borrar-etiquetas"></a>
 
 Per esborrar etiquetes:
 
@@ -389,11 +389,17 @@ Per esborrar etiquetes:
 | :--- | :--- |
 
 
-#### Visualitzar canvis [¶](https://aulasoftwarelibre.github.io/taller-de-git/usobasico/#visualizar-cambios) <a id="visualizar-cambios"></a>
+#### Visualitzar canvis  <a id="visualizar-cambios"></a>
 
 Per veure els canvis que s'han realitzat en el codi fem servir l'ordre `git diff`. L'ordre sense especificar res més, mostrarà els canvis que no han estat afegits encara, és a dir, tots els canvis que s'han fet abans d'utilitzar l'ordre `git add`. Després es pot indicar un paràmetre i donarà els canvis entre la versió indicada i l'estat actual. O per comparar dues versions entre si, s'indica la més antiga i la més nova. exemple:
 
 |  |  |
 | :--- | :--- |
+
+
+### Workflow col·laboratiu
+
+![Esquema de l&apos;&#xFA;s de git col&#xB7;laboratiu](../.gitbook/assets/image.png)
+
 
 
