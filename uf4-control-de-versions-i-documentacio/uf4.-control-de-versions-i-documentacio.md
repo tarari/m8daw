@@ -259,9 +259,9 @@ Al  crear un repositori en GitHub, que no és més que crear un allotjament per 
 
 #### **git push**
 
-Les actualitzacions que fem al nostre local no queden registrades automàticament en el remot: hem de enviar-nosaltres mateixos.
+Les actualitzacions que fem al nostre local no queden registrades automàticament en el remot: hem de enviar-les nosaltres mateixos.
 
-Per enviar una actualització a l'remot fem servir l'ordre **git push &lt;remot&gt;&lt;branca&gt;.**Com que encara no hem explicat les branques, estem treballant des de i enviant cap a la branca master. Per tant, l'ordre que hem d'executar per actualitzar el remot és **`git push origin master`**,que sincronitza la branca màster de l'remot amb la nostra branca master local.
+Per enviar una actualització a l'remot fem servir l'ordre **`git push <remot><branca>`.**Com que encara no hem explicat les branques, estem treballant des de i enviant cap a la branca master. Per tant, l'ordre que hem d'executar per actualitzar el remot és **`git push origin master`**,que sincronitza la branca màster de l'remot amb la nostra branca master local.
 
 Per exemple, suposem que hem afegit un remot però encara no hem fet push des del local als commits A, B i C.L'estat de tots dos seria el següent:
 
@@ -310,68 +310,69 @@ LOCAL2:  O---A---B---C---D--->
         
 ****
 
-**Com podem veure, local2 ha fet el commit D i push a màster,de manera que el remot està actualitzat amb el seu local, però no amb el de local1.Per esmenar això, local1 fa pull abans de seure a treballar i l'estat dels dipòsits passaria a ser el següent:**
+Com podem veure, **local2 ha fet el commit D i push a màster**, de manera que el remot està actualitzat amb el seu local, però no amb el de local1.Per esmenar això, **local1 fa pull** abans de seure a treballar i l'estat dels dipòsits passaria a ser el següent:
 
-       **init ara**
+```text
+        init               ara
+REMOTO:  O---A---B---C---D--->
 
-**REMOT: O --- A --- B --- C --- D ---&gt;**  
+LOCAL1:  O---A---B---C---D--->
 
+LOCAL2:  O---A---B---C---D--->
+```
 
-**local1 : O --- a --- B --- C --- D ---&gt;**  
+     ****
 
-
-**local2: O --- a --- B --- C --- D ---&gt;**  
-
-
-**Ara local1 pot posar-se a treballar coneixent tots els canvis realitzats per local2.**
+Ara local1 pot posar-se a treballar coneixent tots els canvis realitzats per local2.
 
 #### **git clone**
 
-**En l'apartat anterior, local2 tenia una còpia local de l'repositori sincronitzada amb el remot. Com l'ha aconseguit?**
+En l'apartat anterior, local2 tenia una còpia local de l'repositori sincronitzada amb el remot. Com l'ha aconseguit?
 
-**Per crear una còpia local d'un remot utilitzem l'ordre git clone &lt;url&gt; .git\[directori\].Si no especifiquem un directori en què clonar el repositori, es clona en el directori de treball actual.**
+Per crear una còpia local d'un remot utilitzem l'ordre **`git clone <url> .git[directori]`**. Si no especifiquem un directori en què clonar el repositori, es clona en el directori de treball actual.
 
 #### **git checkout**
 
-**A l'treballar amb un repositori podem tenir diverses branques de desenvolupament. La utilitat de tenir diferents branques és que es poden dividir les activitats a realitzar sobre els fitxers de forma exclusiva. Per exemple, podem tenir una branca dev per a canvis inestables.**
+Al treballar amb un repositori podem tenir diverses branques de desenvolupament. La utilitat de tenir diferents branques és que es poden dividir les activitats a realitzar sobre els fitxers de forma exclusiva. Per exemple, podem tenir una branca **dev** **per a canvis inestables**.
 
-**Per crear una branca fem servir l'ordre git checkout -b&lt;branca&gt;.Això ens crea la branca que volem i ens canvia automàticament a ella.**
+Per crear una branca fem servir l'ordre **`git checkout -b<branca>`**. Això ens crea la branca que volem i ens canvia automàticament a ella.
 
-**Prenguem com a exemple un repositori en el qual màster,l'única branca que el compon, té dos commits A i B:**
+Prenguem com a exemple un repositori en el qual màster, l'única branca que el compon, té dos commits A i B:
 
-     **init ara**
+```text
+      init        ara
+REPO:  O---A---B--->
+```
 
-**REPO: O --- A --- B ---&gt;**  
+   ****
 
+Ara fem `git checkout -b dev` per a crear la branca dev i fem en ella un commit C:
 
-**Ara fem git checkout -b dev per a crear la branca dev i fem en ella un commit C:**
+```text
+              init
+REPO: master:  O---A---B----->
+                        \   ara
+                   dev:  C--->
+```
 
-             **init**
+    ****
 
-**REPO: màster: O --- a --- B -----&gt;**
+Amb aquest gràfic podem apreciar dues coses molt importants:
 
-                        **\ ara**
+* la branca no apareix en un punt dedicat de el temps, sinó just després de l'últim commit realitzat, ja que no importa si la branca es va fer just després o passat un mes si no hi ha més commits.
+* La branca va d'un commit a un altre, ja que el normal és crear-la per fer commit sobre ella, encara que es pot crear una branca sense fer commits.
 
-                   **dev: C ---&gt;**  
+Un exemple d'una branca sense commits seria una que fes una instantània \(snapshot\) fàcilment accessible en un moment de el temps:
 
+```text
+              init
+REPO: master:  O---A---B---C---D--->
+                        \         ara
+                  2020:  x
+                         fi
+```
 
-**Amb aquest gràfic podem apreciar dues coses molt importants:**
-
-* **la branca no apareix en un punt dedicat de el temps, sinó just després de l'últim commit realitzat, ja que no importa si la branca es va fer just després o passat un mes si no hi ha més commits.**
-* **La branca va d'un commit a un altre, ja que el normal és crear-la per fer commit sobre ella, encara que es pot crear una branca sense fer commits.**
-
-**Un exemple d'una branca sense commits seria una que fes una instantània fàcilment accessible en un moment de el temps:**
-
-             **init**
-
-**REPO: màster: O --- A --- B --- C --- D ---&gt;**
-
-                        **\ ara**
-
-                  **2019 : x**
-
-                        **fi**  
-
+           ****
 
 #### **git branch**
 
