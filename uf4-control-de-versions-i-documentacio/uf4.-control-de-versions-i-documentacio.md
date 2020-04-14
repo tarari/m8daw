@@ -81,6 +81,10 @@ el teu nom i correu d'usuari són els que t'identificaran a l'actualitzar el rep
 
 ### **ORDRES GIT**
 
+**Ens ajudarem del següent cheat-sheet:**
+
+\*\*\*\*[**http://ndpsoftware.com/git-cheatsheet.html**](http://ndpsoftware.com/git-cheatsheet.html)\*\*\*\*
+
 #### **git init**
 
 Per començar a treballar en un nou repositori vam crear una carpeta amb el nom del nostre projecte \(pot variar\) i executem git init dins d'ella.
@@ -98,225 +102,213 @@ REPO:  O------>
 
 #### **git status**
 
-**Per consultar els fitxers modificats des de l'última actualització de l'repositori executem git status dins d'ell mateix.**
+Per consultar els fitxers modificats des de l'última actualització de l'repositori executem `git status` dins d'ell mateix.
 
-**Aquesta ordre ens mostra un text similar a el següent:**
-
-**On branch màster**  
-
+Aquesta ordre ens mostra un text similar a el següent:
 
 ```text
+On branch master
 
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Makefile
+	README.md
+	src/
+
+nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-**No commits yet**  
-
-
-**Untracked files:**
-
-  **\(utilitzeu "git add &lt;file&gt; ..." to include in what will be Committed\)**
-
- **Makefile**
-
- **README.md**
-
- **src /**  
-
-
-**nothing added to commit but untracked files present \(utilitzeu "git add" to track\)**  
-
+\*\*\*\*
 
 #### **git add**
 
-**Amb la informació de l'ordre anterior podem triar els fitxers que volem afegir a l'repositori usant l'ordre git add&lt;fitxers&gt;.**
+Amb la informació de l'ordre anterior podem triar els fitxers que volem afegir al repositori usant l'ordre `git add<fitxers>`.
 
-**Cada vegada que modifiquem un fitxer s'actualitzen seva data i hora d'última modificació, de manera que git deixa de reconèixer-los com pertanyents a l'últim estat de l'repositori \(pertanyen a un punt posterior en el temps\). Amb git add ens assegurem d'afegir un a un tots els fitxers que volem actualitzar. Un avantatge d'aquesta ordre és que ens permet afegir directoris i el seu contingut de forma recursiva, per la qual cosa no cal afegir un a un tots els fitxers de la mateixa carpeta si s'afegeix el propi directori.**
+Cada vegada que modifiquem un fitxer s'actualitzen data i hora d'última modificació, de manera que git deixa de reconèixer-los com pertanyents a l'últim estat de l'repositori \(pertanyen a un punt posterior en el temps\). Amb **git add** ens assegurem d'afegir un a un tots els fitxers que volem actualitzar. Un avantatge d'aquesta ordre és que ens permet afegir directoris \(--all o .\)i el seu contingut de forma recursiva, per la qual cosa no cal afegir un a un tots els fitxers de la mateixa carpeta si s'afegeix el propi directori.
 
 #### **git mv i git rm**
 
-**A l'igual que git no actualitza fitxers si no s'afegeixen manualment, els fitxers eliminats o desplaçats no s'actualitzen automàticament, ja que la versió anterior de el fitxer abans d'aquestes operacions segueix estant registrada en el repositori. Això vol dir que, per molt que es esborreu un fitxer, la seva inexistència actual no és suficient per eliminar-: cal fer-ho manualment.**
+A l'igual que git no actualitza fitxers si no s'afegeixen manualment, els fitxers eliminats o desplaçats no s'actualitzen automàticament, ja que la versió anterior del fitxer, abans d'aquestes operacions segueix estant registrada en el repositori. Això vol dir que, per molt que es esborrem un fitxer, la seva inexistència actual no és suficient per eliminar: cal fer-ho manualment.
 
-**L'ordre gitmv,a l'igual que l'ordre POSIX mv,ens permet canviar el nom i desplaçar fitxers al llarg de l'repositori i que aquests moviments queden registrats en ell. Igualment, gitrm,a l'igual que l'ordre POSIX rm,ens permet eliminar fitxers de l'arxiu.**
+L'ordre `git mv`,a l'igual que l'ordre POSIX **mv**, ens permet canviar el nom i desplaçar fitxers al llarg de l'repositori i que aquests moviments queden registrats en ell. Igualment, `git rm`,a l'igual que l'ordre POSIX **rm**, ens permet eliminar fitxers de l'arxiu.
 
-**ATENCIÓ !: Aquestes ordres tenen efectes tangibles sobre els fitxers de l'arxiu. Esborrar-los o desplaçar-los amb aquestes ordres esborrarà o desplaçarà els fitxers de directori.**
+{% hint style="info" %}
+ATENCIÓ !: Aquestes ordres tenen efectes tangibles sobre els fitxers de l'arxiu. Esborrar-los o desplaçar-los amb aquestes ordres esborrarà o desplaçarà els fitxers de directori.
+{% endhint %}
 
 #### **git restore**
 
-**A l'afegir fitxers per a la següent actualització de l'repositori passen a estar en estat staged \(¿escenificat?\). Això vol dir que, fins que no es faci efectiva l'actualització, els canvis sobre aquests fitxers estan merament en consideració per a ella.**
+A l'afegir fitxers per a la següent actualització del repositori passen a estar en estat **staged** \(escenificat\). Això vol dir que, fins que no es faci efectiva l'actualització, els canvis sobre aquests fitxers estan en consideració per a ella.
 
-**Si decidíssim que no volem afegir alguns dels fitxers a la següent actualització, podem usar l'ordre git restore --staged &lt;fitxers&gt; per no incloure'ls però que conservin els canvis:**
+Si decidíssim que no volem afegir alguns dels fitxers a la següent actualització, podem usar l'ordre git restore --staged &lt;fitxers&gt; per no incloure'ls però que conservin els canvis:
 
-**git status**
+```text
+git status
+# On branch master
+# Changes to be committed:
+#   (use "git restore --staged <file>..." to unstage)
+#         new file:   aquest_no
+#         new file:   aquest_si
 
-**\# On branch màster**
+git restore --staged aquest_no
 
-**\# Changes to be Committed:**
+git status
+# On branch master
+# Changes to be committed:
+#   (use "git restore --staged <file>..." to unstage)
+#         new file:   aquest_si
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#         este_no
 
-**\# \( utilitzeu "git restaurar --staged &lt;file&gt; ..." to unstage\)**
-
-**\# new file: este\_no**
-
-**\# new file: este\_si**  
-
-
-**git restore --staged este\_no**  
-
-
-**git status**
-
-**\# On branch màster**
-
-**\# Changes to be Committed:**
-
-**\# \(utilitzeu "git restore --staged &lt;file&gt; ... "to unstage\)**
-
-**\# new file: este\_si**
-
-**\#**
-
-**\# Untracked files:**
-
-**\# \(utilitzeu" git add &lt;file&gt; ... "to include in what will be Committed\)**
-
-**\# este\_no**  
-
-
-**ls -a**
-
-**\#. .. este\_no este\_si .git**
+ls -a
+# .  ..  aquest_no  aquest_si  .git
+```
 
 #### **git commit**
 
-**Un cop estem segurs que hem inclòs els fitxers que volem actualitzar utilitzem l'ordre git commit -m "Missatge d'actualització" -m \[ "Descripció de l'actualització"\] per fer efectius aquests canvis. Com pots veure, aquesta ordre admet dues cadenes de caràcters:**
+Un cop estem segurs que hem inclòs els fitxers que volem actualitzar utilitzem l'ordre _`git commit -m "Missatge d'actualització"`_ `-m [ "Descripció de l'actualització"]` per fer efectius aquests canvis. Com pots veure, aquesta ordre admet dues cadenes de caràcters:
 
-* **Missatge d'actualització: Un missatge curt \(per convenció 50 o menys caràcters\) sobre els canvis realitzats.**
-* **Descripció de l'actualització: Un bloc de text opcional en el qual s'expliquen detalladament els canvis realitzats.**
+* **Missatge d'actualització**: Un missatge curt \(per convenció 50 o menys caràcters\) sobre els canvis realitzats.
+* **Descripció de l'actualització**: Un bloc de text opcional en el qual s'expliquen detalladament els canvis realitzats.
 
-**git commit -m "\[META\] Actualitzat Makefile i .gitignore" -m "Afegit llegibilitat a l'Makefile i afegits fitxers a ignorar al .gitignore."**
+```text
+git commit -m "[META] Actualitzat Makefile i .gitignore" -m "Afegit llegibilitat al Makefile i afegits fitxers a ignorar al .gitignore."
+```
 
-**Un cop realitzat el commit,el que fins ara hem anomenat actualització per no dificultar la lectura, els seus canvis es guarden en el registre de commits, que veurem més endavant.**
+Un cop realitzat el commit, el que fins ara hem anomenat actualització per no dificultar la lectura, els seus canvis es guarden en el registre de commits, que veurem més endavant.
 
-**Afegit el commit A,el repositori quedaria així:**
+Afegit el commit A, el repositori quedaria així:
 
-     **init ara**
+```text
+       init   ara
+REPO:  O---A--->
+```
 
-**REPO: O --- A ---&gt;**  
+    
+****
 
+**L'últim commit realitzat\( A en aquest cas\) rep el nom de HEAD.**
 
-**L'últim commit realitzat\(A en aquest cas\) rep el nom de HEAD.**
+{% hint style="info" %}
+**ATENCIÓ !: Desfer aquests canvis és molt difícil, molt més treballant amb un repositori remot \(veure següent apartat\). Tria molt bé quins canvis vols deixar reflectits en els  commits.**
+{% endhint %}
 
-**ATENCIÓ !: Desfer aquests canvis és molt difícil, molt més treballant amb un repositori remot \(veure següent apartat\). Tria molt bé quins canvis vols deixar reflectits en els teus commits.**
+\*\*\*\*
 
 #### **git log**
 
-**Segons anem fent commits, aquests es van guardant en el fitxer .git per registrar l'evolució de l'repositori.**
+Segons anem fent commits, aquests es van guardant en el fitxer .git per registrar l'evolució de l'repositori.
 
-**Si executem git log accedim una interfície en la qual podem llegir els commits realitzats fins al moment:**
+Si executem `git log` accedim una interfície en la qual podem llegir els commits realitzats fins al moment:
 
-**commit 9d0431253c006222eaae2412c5d4ae065dc7449a**
+```text
+commit 9d0431253c006222eaae2412c5d4ae065dc7449a
+Author: Usuari <usuari@correu.com>
+Date:   Wed Oct 9 13:06:49 2019 +0200
 
-**Autor: Usuari &lt;usuario@correo.com&gt;**
+    A
+```
 
-**Date: Wed octubre 9 13:06:49 2019 +0200**  
+Naveguem aquesta interfície amb les tecles de direcció, `j` i `k` o Av Pàg i Re Pàg i la tanquem amb `q.`
 
-
-    **A**  
-
-
-**Naveguem aquesta interfície amb les tecles de direcció, j i k o Av Pàg i Re Pàg i la tanquem amb q.**
-
-**Com pots veure, el commit realment no té el nom que li posem, sinó un hash llarguíssim. Aquest és un identificador únic amb el qual ens referim inequívocament a cada un dels commits. En general, en tenim prou amb usar únicament els set primers números per a això.**
+Com pots veure, el commit realment no té el nom que li posem, sinó un hash llarguíssim. Aquest és un identificador únic amb el qual ens referim inequívocament a cada un dels commits. En general, en tenim prou amb usar únicament els set primers números per a això.
 
 #### **git whatchanged**
 
-**Mentre que git log ens mostra únicament el títol i data i hora dels commits que s'han realitzat fins ara, no ens mostra els canvis realitzats.**
+Mentre que git log ens mostra únicament el títol i data i hora dels commits que s'han realitzat fins ara, no ens mostra els canvis realitzats.
 
-**Per a això fem servir l'ordre git whatchanged\[commit\],que ens permet veure quins canvis s'han realitzat fins al commit commit \(inclosos\) o fins al present.**
+Per a això fem servir l'ordre **`git whatchanged[commit]`**,que ens permet veure quins canvis s'han realitzat fins al commit commit \(inclosos\) o fins al present.
 
-**commit 9d0431253c006222eaae2412c5d4ae065dc7449a**
+```text
+commit 9d0431253c006222eaae2412c5d4ae065dc7449a
+Author: Usuari <usuari@correu.com>
+Date:   Wed Oct 9 13:06:49 2019 +0200
 
-**Autor: Usuari &lt;usuario@correo.com&gt;**
+    A
 
-**Date: Wed octubre 9 13:06:49 2019 +0200**  
-
-
-    **A:**  
-
-
-**000000 100.644 0000000 e69de29 A README.md**  
+:000000 100644 0000000 e69de29 A        README.md
+```
 
 
-**En aquest cas se'ns indica que s'ha creat el fitxer README.md. La lletra a la dreta el nom de el fitxer ens indica el canvis que s'ha realitzat:**
 
-* **A:Creat \(added\).**
-* **D:Eliminat \(deleted\).**
-* **M:Modificat \(modified\).**
+En aquest cas se'ns indica que s'ha creat el fitxer README.md. La lletra a la dreta el nom de el fitxer ens indica el canvis que s'ha realitzat:
+
+* **A: Creat \(added\).**
+* **D: Eliminat \(deleted\).**
+* **M: Modificat \(modified\).**
 
 #### **git diff**
 
-**Amb git log i git whatchanged podem veure quins fitxers s'han canviat en cada commit. Però. ¿Quins han estat aquests canvis?**
+Amb `git log` i `git whatchanged` podem veure quins fitxers s'han canviat en cada commit. Però. Quins han estat aquests canvis?
 
-**L'ordre git diff &lt;commit\_inicio&gt; \[commit\_fin\] ens permet veure quins canvis s'han realitzat des commit\_inicio fins commit\_fin.Si no s'especifica commit\_fin,aquest serà HEAD.**
+L'ordre **`git diff <commit_inicio> [commit_fin`**\] ens permet veure quins canvis s'han realitzat des commit\_inici  fins commit\_fin. Si no s'especifica commit\_fin, aquest serà **HEAD**.
 
-**Aquests canvis vénen fitxer per fitxer en verd si representen una addició i en vermell si representen una eliminació.**
+Aquests canvis vénen fitxer per fitxer en verd si representen una addició i en vermell si representen una eliminació.
 
 #### **git remote**
 
-**Fins ara hem estat treballant amb un repositori local, però el potencial d'git s'aprofita completament a l'treballar amb un repositori remot.**
+Fins ara hem estat treballant amb un repositori local, però el potencial d'git s'aprofita completament a l'treballar amb un repositori remot.
 
-**Per associar nostre local a un remot utilitzem l'ordre git remote add origin&lt;url&gt;,sent origin l'àlies que li donem a l'remot per convenció. És imperatiu que el remot estigui inicialitzat abans d'intentar realitzar aquesta acció, ja que no funcionarà d'una altra manera.**
+Per associar nostre local a un remot utilitzem l'ordre **`git remote add origin <url>`**, sent origin l'àlies que li donem a l'remot per convenció. És imperatiu que el remot estigui inicialitzat abans d'intentar realitzar aquesta acció, ja que no funcionarà d'una altra manera.
 
-**A l'crear un repositori en GitHub, que no és més que crear un allotjament per a un remot, se'ns indica que, per enllaçar nostre local a l'remot, hem de fer servir git remote add seguit de la url de l'remot que acabem de crear.**
+Al  crear un repositori en GitHub, que no és més que crear un allotjament per a un remot, se'ns indica que, per enllaçar nostre local a l'remot, hem de fer servir **git remote add** seguit de la url de l'remot que acabem de crear.
 
 #### **git push**
 
-**Les actualitzacions que fem al nostre local no queden registrades automàticament en el remot: hem de enviar-nosaltres mateixos.**
+Les actualitzacions que fem al nostre local no queden registrades automàticament en el remot: hem de enviar-nosaltres mateixos.
 
-**Per enviar una actualització a l'remot fem servir l'ordre git push &lt;remot&gt;&lt;branca&gt;.Com que encara no hem explicat les branques, estem treballant des de i enviant cap a la branca master.Per tant, l'ordre que hem d'executar per actualitzar el remot és git push originmaster,que sincronitza la branca màster de l'remot amb la nostra branca master local.**
+Per enviar una actualització a l'remot fem servir l'ordre **git push &lt;remot&gt;&lt;branca&gt;.**Com que encara no hem explicat les branques, estem treballant des de i enviant cap a la branca master. Per tant, l'ordre que hem d'executar per actualitzar el remot és **`git push origin master`**,que sincronitza la branca màster de l'remot amb la nostra branca master local.
 
-**Per exemple, suposem que hem afegit un remot però encara no hem fet push des del local als commits A, B i C.L'estat de tots dos seria el següent:**
+Per exemple, suposem que hem afegit un remot però encara no hem fet push des del local als commits A, B i C.L'estat de tots dos seria el següent:
 
-       **init ara**
+```text
+        init           ara
+REMOT:  O--------------->
 
-**REMOT: O ---------------&gt;**  
+LOCAL:  O---A---B---C--->
+```
 
+   ****
 
- **LOCAL: O --- A --- B --- C ---&gt;**  
+Si fem push, l'estat canviaria a el següent:
 
+```text
+        init           ara
+REMOT:  O---A---B---C--->
 
-**Si fem push, l'estat canviaria a el següent:**
+LOCAL:  O---A---B---C--->
+```
 
-       **init ara**
+ ****
 
-**REMOT: O --- a --- B --- C ---&gt;**  
+Amb aquest gràfic podem apreciar dues coses molt importants:
 
-
- **LOCAL: O --- a --- B --- C ---&gt;**  
-
-
-**Amb aquest gràfic podem apreciar dues coses molt importants:**
-
-* **el repositori no emmagatzema el moment en què es fa push, doncs la dada rellevant en aquest cas seria la data i hora de l'últim commit.**
-* **El remot no actualitza els commits a la data i hora de l'push, sinó que els emmagatzema de la mateixa manera que al local, ja que no és més que una còpia remota de l'repositori.**
+* el repositori no emmagatzema el moment en què es fa push, doncs la dada rellevant en aquest cas seria la data i hora de l'últim commit.
+* El remot no actualitza els commits a la data i hora de l'push, sinó que els emmagatzema de la mateixa manera que al local, ja que no és més que una còpia remota de l'repositori.
 
 #### **git pull**
 
-**De la mateixa manera que podem empènyer els canvis a l'remot, podem tirar d'ells al nostre local.**
+De la mateixa manera que podem empènyer els canvis a l'remot, podem tirar d'ells al nostre local.
 
-**Si volem actualitzar canvis de l'remot que s'han fet a partir d'un altre local, utilitzem git pull per sincronitzar el nostre local amb la versió més recent de tot el remot.**
+Si volem actualitzar canvis del remot que s'han fet a partir d'un altre local, utilitzem **git pull** per sincronitzar el nostre local amb la versió més recent de tot el remot.
 
-**Per exemple, vegem el gràfic anterior considerant un nou local en una altra màquina. Per això, anomenarem local1 al que abans anomenem LOCAL i local2 a el nou local:**
+Per exemple, vegem el gràfic anterior considerant un nou local en una altra màquina. Per això, anomenarem local1 al que abans anomenem LOCAL1 i local2 a el nou local:
 
-       **init ara**
+```text
+        init               ara
+REMOT :  O---A---B---C---D--->
 
-**REMOT: O --- A --- B --- C --- D ---&gt;**  
+LOCAL1:  O---A---B---C------->
 
+LOCAL2:  O---A---B---C---D--->
+```
 
-**local1: O --- A- --B --- C -------&gt;**  
-
-
-**local2: O --- A --- B --- C --- D ---&gt;**  
-
+        
+****
 
 **Com podem veure, local2 ha fet el commit D i push a màster,de manera que el remot està actualitzat amb el seu local, però no amb el de local1.Per esmenar això, local1 fa pull abans de seure a treballar i l'estat dels dipòsits passaria a ser el següent:**
 
@@ -495,7 +487,7 @@ REPO:  O------>
                   **\* dev: C --- I ---&gt;**  
 
 
-**Trobant-nos en la branca dev,executem git sobrepassimàster:**
+Trobant-nos en la branca dev,executem git sobrepassimàster:
 
              **init**
 
@@ -544,66 +536,66 @@ REPO:  O------>
 
 #### **git fetch**
 
-**A l'fer pull des d'un remot, git descarrega els commits que han d'actualitzar-se i fa merge a les branques corresponents.**
+A l'fer pull des d'un remot, git descarrega els commits que han d'actualitzar-se i fa merge a les branques corresponents.
 
-**Per evitar fer merge i simplement consultar els canvis realitzats sense actualitzar el nostre repositori fem servir l'ordre git fetch\[branca\].Per defecte, git fetch descàrrega tots els commits de origin.**
+Per evitar fer merge i simplement consultar els canvis realitzats sense actualitzar el nostre repositori fem servir l'ordre git fetch\[branca\].Per defecte, git fetch descàrrega tots els commits de origin.
 
-**Després descarregar els commits, es mostren amb el prefix \* \[newtag\],permetent-nos executar git log sobre ells.**
+Després descarregar els commits, es mostren amb el prefix \* \[newtag\],permetent-nos executar git log sobre ells.
 
 #### **git revert**
 
-**Si s'han comès errors en els últims commits, el més assenyat és esborrar tots els fitxers que hem afegit i fer un commit que torni a l'estat anterior. No obstant això, és possible que hi hagi fitxers que s'hagin actualitzat a trossos i aquesta acció consumeixi massa temps.**
+Si s'han comès errors en els últims commits, el més assenyat és esborrar tots els fitxers que hem afegit i fer un commit que torni a l'estat anterior. No obstant això, és possible que hi hagi fitxers que s'hagin actualitzat a trossos i aquesta acció consumeixi massa temps.
 
-**L'ordre git revert &lt;commit&gt; -m "Missatge de l'commit" ens permet realitzar un commit en què es torni a l'estat en què estava el repositori just després de fer el commit commit.**
+L'ordre git revert &lt;commit&gt; -m "Missatge de l'commit" ens permet realitzar un commit en què es torni a l'estat en què estava el repositori just després de fer el commit commit.
 
-### **4 - FUNCIONS DE GitHub**
+### **FUNCIONS DE GitHub**
 
 #### **Crear un remot**
 
-**Per crear un remot en GitHub podem anar a la pantalla d'inici oa la nostra llista de repositoris i prémer el botó de new en verd. A l'crear un repositori GitHub ens diverses eleccions:**
+Per crear un remot en GitHub podem anar a la pantalla d'inici oa la nostra llista de repositoris i prémer el botó de new en verd. A l'crear un repositori GitHub ens diverses eleccions:
 
-**Públic o privat: Els repositoris amb un remot públic són visibles per a tothom i els privats, només pels que tinguin permisos de col·laboració.**
+**Públic o priva**t: Els repositoris amb un remot públic són visibles per a tothom i els privats, només pels que tinguin permisos de col·laboració.
 
-**Crear README.md: Inicialitza el repositori amb un fitxer README.md que conté el títol de la mateixa.**
+Crear README.md: Inicialitza el repositori amb un fitxer README.md que conté el títol de la mateixa.
 
-**Crear .gitignore: Inicialitza el repositori amb un fitxer .gitignore.**
+Crear .gitignore: Inicialitza el repositori amb un fitxer .gitignore.
 
-**L'ideal és no inicialitzar el repositori des GitHub i fer-ho des de la terminal. Si no seleccionem cap dels dos últims fitxers, GitHub ens donarà instruccions per afegir un remot al nostre local \(les mateixes que vam veure anteriorment\).**
+L'ideal és no inicialitzar el repositori des GitHub i fer-ho des de la terminal. Si no seleccionem cap dels dos últims fitxers, GitHub ens donarà instruccions per afegir un remot al nostre local \(les mateixes que vam veure anteriorment\).
 
 #### **Gestionar un remot**
 
-**En un primer cop d'ull, GitHub ens permet veure el nombre de commits, branques, releases, contibutores i la llicència del nostre repositori; així com accedir a les issues i pull request \(que veurem més endavant\), els projectes \(que són una plataforma de** [**SCRUM,**](https://en.wikipedia.org/wiki/Scrum_%28software_development%29)**la wiki i les opcions de l'repositori.**
+En un primer cop d'ull, GitHub ens permet veure el nombre de commits, branques, releases, contibutores i la llicència del nostre repositori; així com accedir a les issues i pull request \(que veurem més endavant\), els projectes \(que són una plataforma de [SCRUM,](https://en.wikipedia.org/wiki/Scrum_%28software_development%29)la wiki i les opcions de l'repositori.
 
-**La wiki és una pàgina en la qual es pot \(i ha de\) escriure documentació sobre el dipòsit, els seus usos, funcions i tot allò que faciliti el treball amb el mateix.**
+La wiki és una pàgina en la qual es pot \(i ha de\) escriure documentació sobre el dipòsit, els seus usos, funcions i tot allò que faciliti el treball amb el mateix.
 
-**Les opcions ens permeten canviar el nom i opcions bàsiques de l'remot \(fins i tot eliminar\), afegir col·laboradors i formar equips, afegir integració amb serveis de tercers i gestionar la protecció de les branques. Aquesta protecció permet als adminsitradores de l'repositori crear restriccions perquè els canvis d'altres usuaris no puguin ser acceptats sense consens de l'equip.**
+Les opcions ens permeten canviar el nom i opcions bàsiques de l'remot \(fins i tot eliminar\), afegir col·laboradors i formar equips, afegir integració amb serveis de tercers i gestionar la protecció de les branques. Aquesta protecció permet als adminsitradores de l'repositori crear restriccions perquè els canvis d'altres usuaris no puguin ser acceptats sense consens de l'equip.
 
 #### **Issues**
 
-**Si et trobes amb un problema a l'utilitzar el contingut d'un repositori pots enviar una issue explicant aquest problema de forma detallada. Després d'això, un administrador de l'repositori començarà una discussió pública amb tu tant per ajudar-te a soluciona rla com per arreglar allò que t'està causant el problema.**
+Si et trobes amb un problema a l'utilitzar el contingut d'un repositori pots enviar una issue explicant aquest problema de forma detallada. Després d'això, un administrador de l'repositori començarà una discussió pública amb tu tant per ajudar-te a soluciona rla com per arreglar allò que t'està causant el problema.
 
-**Molts repositoris incorporen seccions específiques en l'apartat de issues per gestionar més àgilment a què es refereix cadascuna i poder assignar així què administrador del fòrum s'ocupa de resoldre-les.**
+Molts repositoris incorporen seccions específiques en l'apartat de issues per gestionar més àgilment a què es refereix cadascuna i poder assignar així què administrador del fòrum s'ocupa de resoldre-les.
 
 #### **Fork**
 
-**Per treballar amb un repositori és imperatiu tenir accés de col·laboració a aquest. Imagina el caos que crearia que tothom pogués escriure** [**alrepositori de**](https://github.com/torvalds/linux)**Linux!Per poder editar un repositori aliè vam crear una còpia pròpia mitjançant un fork \(bifurcació\).**
+Per treballar amb un repositori és imperatiu tenir accés de col·laboració a aquest. Imagina el caos que crearia que tothom pogués escriure [alrepositori de](https://github.com/torvalds/linux)Linux!Per poder editar un repositori aliè vam crear una còpia pròpia mitjançant un fork \(bifurcació\).
 
-**Podem fer això des del botó "fork" que es troba a dalt a la dreta a la pàgina principal de l'repositori. Això crea una còpia de l'repositori en un remot al nostre nom. És equivalent a clonar el repositori i canviar el remot a un el nostre.**
+Podem fer això des del botó "fork" que es troba a dalt a la dreta a la pàgina principal de l'repositori. Això crea una còpia de l'repositori en un remot al nostre nom. És equivalent a clonar el repositori i canviar el remot a un el nostre.
 
-**Un cop fet el nostre fork, podem clonar i treballar sobre ell com vulguem, actualitzant al nostre remot quan vulguem. Per afegir els nostres canvis a l'repositori original vam crear una pull request.**
+Un cop fet el nostre fork, podem clonar i treballar sobre ell com vulguem, actualitzant al nostre remot quan vulguem. Per afegir els nostres canvis a l'repositori original vam crear una pull request.
 
 #### **Pull Request**
 
-**Un cop haguem fet els canvis que volem al nostre fork de l'repositori, premem el botó "pull request" de la pàgina principal del nostre fork per iniciar una Pull Request o PR.**
+Un cop haguem fet els canvis que volem al nostre fork de l'repositori, premem el botó "**pull reques**t" de la pàgina principal del nostre **fork** per iniciar una Pull Request o PR.
 
-**Després d'iniciar la PR, els administradors de l'repositori original de comprovar que els teus canvis siguin viables per introduir-los al repositori original i t'indicaran si has de fer modificacions a el contingut del teu PR. Un cop sigui acceptada, faran merge de la teva PR amb el repositori original i els teus canvis es veuran reflectits en el repositori original.**
+Després d'iniciar la PR, els administradors del repositori original  han de comprovar que els teus canvis siguin viables per introduir-los al repositori original i t'indicaran si has de fer modificacions al contingut del teu PR. Un cop sigui acceptada, faran **`merge`** de la teva PR amb el repositori original i els teus canvis es veuran reflectits en el repositori original.
 
-### **5 - MALES PRÀCTIQUES**
+###  **MALES PRÀCTIQUES**
 
-**A l'hora d'afegir fitxers a el repositori per al següent commit, executar l'ordre git add. sense comprovar prèviament què s'està actualitzant amb git status pot \(molt probablement\) afegir a l'repositori fitxers actualitzats parcialment que no estan preparats per a ser registrats.**
+  
+****A l'hora d'afegir fitxers a el repositori per al següent commit, executar l'ordre `git add.` sense comprovar prèviament què s'està actualitzant amb **`git status`** pots \(molt probablement\) afegir a l'repositori fitxers actualitzats parcialment que no estan preparats per a ser registrats.
 
-**En projectes molt grans i complexos és mala pràctica fer push a màster directament. L'ideal és crear una branca de desenvolupament sobre la qual anar registrant commits i fer merge sobre màster quan es vulgui avançar una aversió a ella, ja que ha de ser la branca d'actualitzacions estables.**  
-
+En projectes molt grans i complexos és mala pràctica fer push a màster directament. L'ideal és crear una branca de desenvolupament sobre la qual anar registrant commits i fer merge sobre màster quan es vulgui avançar una aversió a ella, ja que ha de ser la branca d'actualitzacions estables.
 
 ### Workflow col·laboratiu
 
