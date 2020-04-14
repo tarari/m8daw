@@ -376,162 +376,142 @@ REPO: master:  O---A---B---C---D--->
 
 #### **git branch**
 
-**Per consultar la llista de branques que componen un repositori podem usar l'ordre gitbranch,que ens retorna una llista de totes les branques marcant la nostra amb un \*.**
+Per consultar la llista de branques que componen un repositori podem usar l'ordre `git branch`, que ens retorna una llista de totes les branques marcant la nostra amb un **\***.
 
-**Per eliminar una branca fem servir l'ordre git branch -d&lt;branca&gt;.Prenguem com a exemple el gràfic de l'apartat anterior:**
+Per eliminar una branca fem servir l'ordre **`git branch -d<branca>`**.Prenguem com a exemple el gràfic de l'apartat anterior:
 
-             **init**
+```text
+              init
+REPO: master:  O---A---B----->
+                        \    ara
+                   dev:  C--->
+```
 
-**REPO: màster: O --- A --- B -----&gt;**
+Si eliminéssim la branca després del commit C, aquest seria l'estat del repositori:
 
-                        **\ ara**
+```text
+             init
+REPO: master:  O---A---B----->
+                        \   ara
+                   dev:  Cx
+                         fi
+```
 
-                   **dev: C ---&gt;**  
-
-
-**Si eliminéssim la branca després del commit C,aquest seria el estat de l'repositori:**
-
-             **init**
-
-**REPO: màster: O --- A --- B -----&gt;**
-
-                        **\ ara**
-
-                   **dev: Cx**
-
-                         **fi**  
-
-
-**Això no elimina els canvis realitzats sobre la branca abans de realitzar l'eliminació, només deixa de registrar canvis sobre ella i mostrar-la com branca activa.**
+Això no elimina els canvis realitzats sobre la branca abans de realitzar l'eliminació, només deixa de registrar canvis sobre ella i mostrar-la com branca activa.
 
 #### **git switch**
 
-**Per canviar de branca utilitzem git switch&lt;branca&gt;,sent &lt;branca&gt; una branca ja existnte. D'aquesta manera podem fer commits en les dues branques.**
+Per canviar de branca utilitzem **`git switch<branca>`**, sent &lt;branca&gt; una branca ja existent. D'aquesta manera podem fer commits en les dues branques.
 
-**Per exemple, suposem que tenim el repositori de l'apartat anterior:**
+Per exemple, suposem que tenim el repositori de l'apartat anterior:
 
-             **init**
+```text
+              init
+REPO: master:  O---A---B----->
+                        \   ara
+                  *dev:  C--->
+```
 
-**REPO: màster: O --- A --- B -----&gt;**
+Com es pot veure, ens trobem a la branca dev. Si fem un commit D en dev,  `git switch master` i un commit I,quedaria així:
 
-                        **\ ara**
+```text
+               init
+REPO: *master:  O---A---B---------E--->
+                         \           ara
+                    dev:  C---D------->
+```
 
-                  **\* dev: C ---&gt;**  
-
-
-**Com pots veure, ens trobem a la branca dev.Si fem un commit D en dev, git switch màster i un commit I,quedaria així:**
-
-              **init**
-
-**REPO: \* màster: O --- A --- B --------- E ---&gt;**
-
-                         **\ ara**
-
-                    **dev: C --- d -------&gt;**  
-
-
-**És important aprecier que els commits B i e s'han separat per donar espai a C i d i crear una sensació de progressió temporal. Això és únicament un detall de la representació gràfica de les dues branques, ja que a git no li importa el moment de realització de l'commit dins de la pròpia branca.**
+És important apreciar que els commits B i E s'han separat per donar espai a C i D i crear una sensació de progressió temporal. Això és únicament un detall de la representació gràfica de les dues branques, ja que a git no li importa el moment de realització de l'commit dins de la pròpia branca.
 
 #### **git merge**
 
-**Després de portar un temps treballant amb una branca voldrem unir els seus canvis als de màster o els d'una altra branca.**
+Després de portar un temps treballant amb una branca voldrem unir els seus canvis als de màster o els d'una altra branca.
 
-**Per a això, ens col·loquem en la branca que volem actualitzar i executem git merge &lt;branca&gt; -m "Missatge del'commit".Tot i que es pot fer merge sense un missatge de commit, és millor pràctica indicar amb un el moment d'unió de les dues branques per facilitar la navegació al llarg de l'repositori.**
+Per a això, ens col·loquem en la branca que volem actualitzar i executem **`git merge <branca> -m "Missatge del'commit"`**.Tot i que es pot fer merge sense un missatge de commit, és millor pràctica indicar amb un el moment d'unió de les dues branques per facilitar la navegació al llarg de l'repositori.
 
-**Prenguem com a exemple el següent repositori:**
+Prenguem com a exemple el següent repositori:
 
-              **init**
+  ****
 
-**REPO: \* màster: O --- A --- B --- D -----&gt;**
+```text
+               init
+REPO: *master:  O---A---B---D----->
+                         \        ara
+                    dev:  C---E--->
+```
 
-                         **\ ara**
+Estant en màster executem **`git merge dev -m "E"`**.L'estat del repositori passa a ser el següent:
 
-                    **dev: C --- I ---&gt;**  
+```text
+              init
+REPO: *master:  O---A---B---D---F------>
+                         \     /     ara
+                    dev:  C---E-------->
+```
 
+Això ens indica que tots els canvis fets des de **B** fins **F** en la branca dev ara estan integrats en màster, no fent falta incloure'ls en la mateixa.
 
-**Estant en màster executem git merge dev -m"I".L'estat de l'repositori passa a ser el següent:**
-
-              **init**
-
-**REPO: \* màster: O --- A --- B --- D --- F ------&gt;**
-
-                         **\ / ara**
-
-                    **dev: C --- I --------&gt;**  
-
-
-**Això ens indica que tots els canvis fets des de B fins F en la branca dev ara estan integrats en màster,no fent falta incloure'ls en la mateixa.**
-
-**De la mateixa manera, és important també veure la correlació temporal entre el commit D i els commits C i E.Encara que en la mateixa branca git no té en compte la data i hora dels commits, sí que en té en compte si són de diferents branques, de manera que sap que C s'ha creat abans que D i aquest abans que E:**
-
-              **init**
-
-**REPO: \* màster: O --- A --- B --- D --- F ------&gt;**
-
-                         **\ \| \| \| / Ara**
-
-                    **dev: C --- I --------&gt;**  
+De la mateixa manera, és important també veure la correlació temporal entre el commit D i els commits C i E. Encara que en la mateixa branca git no té en compte la data i hora dels commits, sí que en té en compte si són de diferents branques, de manera que sap que C s'ha creat abans que D i aquest abans que E:
 
 
-#### **git sobrepassi**
 
-**En contraposició a la unió de dues branques, podem fer un ultrapassi \(¿refonamentació?\) D'una branca amb tots els commits d'una altra fins al moment.**
+```text
+               init
+REPO: *master:  O---A---B---D---F------>
+                         \| | |/     ara
+                    dev:  C---E-------->
+```
 
-**Col·locant-nos en la branca sobre la qual volem fer ultrapassi, executem git rebase &lt;branca&gt; per unir tots els commits vam realitzar en la branca branca a la nostra previ a tots els commits de la branca actual que no s'han unit a la branca branca.És més fàcil veure-ho visualment:**
+#### **git rebase**
 
-             **init**
+En contraposició a la unió de dues branques, podem fer un **`rebase`** d'una branca amb tots els commits d'una altra fins al moment.
 
-**REPO: màster: O --- A --- B --- D -----&gt;**
+Col·locant-nos en la branca sobre la qual volem fer rebase, executem **`git rebase <branca>`** per unir tots els commits vam realitzar en la branca branca a la nostra previ a tots els commits de la branca actual que no s'han unit a la branca branca. És més fàcil veure-ho visualment:
 
-                        **\ ara**
+```text
+              init
+REPO: master:  O---A---B---D----->
+                        \      ara
+                  *dev:  C---E--->
+```
 
-                  **\* dev: C --- I ---&gt;**  
-
-
-Trobant-nos en la branca dev,executem git sobrepassimàster:
-
-             **init**
-
-**REPO: màster: O --- A --- B --- D ---------&gt;**
-
-                            **\ ara**
-
-                      **\* dev: C '- E' -&gt;**  
+Trobant-nos en la branca dev, executem **`git rebase master`**:
 
 
-**En la representació gràfica, els commits C i e passen a ser C 'i e' respectivament. En la realitat, els commits no varien el seu contingut, però sí el contingut aliè a ells amb el qual treballen \(com pot ser la millora d'un algoritme que no s'ha modificat en ells\).**
 
-**Executant git log podem veure que, tot i que les dates no coincideixen en l'ordre cronològic, l'ordre dels commits coincideix amb el de l'gràfic:**
+```text
+              init
+REPO: master:  O---A---B---D--------->
+                            \      ara
+                      *dev:  C'--E'-->
+```
 
-**commit 71c9c8bf989189668237a9abfb7b58da5eb72f48 \(HEAD -&gt; dev\)**
+En la representació gràfica, els commits C i E passen a ser C 'i E' respectivament. En  realitat, els commits no varien el seu contingut, però sí el contingut aliè a ells amb el qual treballen \(com pot ser la millora d'un algoritme que no s'ha modificat en ells\).
 
-**Autor: Usuari &lt;usuario@correo.com&gt;**
+Executant **git log** podem veure que, tot i que les dates no coincideixen en l'ordre cronològic, l'ordre dels commits coincideix amb el de l'gràfic:
 
-**Date: Wed octubre 9 18:53:47 2019 +0200**  
+```text
+commit 71c9c8bf989189668237a9abfb7b58da5eb72f48 (HEAD -> dev)
+Author: Usuari <usuari@correo.com>
+Date:   Wed Oct 9 18:53:47 2019 +0200
 
+    E
 
-    **I**  
+commit 65c35a92220ff7a8f1bbf59841621ec69e3689d2 (master)
+Author: Usuari <usuari@correo.com>
+Date:   Wed Oct 9 18:54:01 2019 +0200
 
+    D
 
-**commit 65c35a92220ff7a8f1bbf59841621ec69e3689d2 \(màster\)**
+commit 26767459e2fde0d3f9dd3b04be4991249e14a8c2
+Author: Usuari <usuari@correo.com>
+Date:   Wed Oct 9 18:51:30 2019 +0200
 
-**Autor: Usuari &lt;usuario@correo.com&gt;**
+    C
+```
 
-**Date: Wed octubre 9 18:54:01 2019 +0200**  
-
-
-    **D**  
-
-
-**commit 26767459e2fde0d3f9dd3b04be4991249e14a8c2**
-
-**Autor: Usuari &lt;usuario@correo.com &gt;**
-
-**Date: Wed octubre 9 18:51:30 2019 +0200**  
-
-
-    **C**  
-
+  
+****
 
 **Tingues en compte que, en el log, els commits C 'i e' apareixen com C i e respectivament.**
 
