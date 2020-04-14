@@ -513,21 +513,21 @@ Date:   Wed Oct 9 18:51:30 2019 +0200
   
 ****
 
-**Tingues en compte que, en el log, els commits C 'i e' apareixen com C i e respectivament.**
+Tingues en compte que, en el log, els commits C 'i E' apareixen com C i E respectivament.
 
 #### **git fetch**
 
-A l'fer pull des d'un remot, git descarrega els commits que han d'actualitzar-se i fa merge a les branques corresponents.
+En fer pull des d'un remot, git descarrega els commits que han d'actualitzar-se i fa merge a les branques corresponents.
 
-Per evitar fer merge i simplement consultar els canvis realitzats sense actualitzar el nostre repositori fem servir l'ordre git fetch\[branca\].Per defecte, git fetch descàrrega tots els commits de origin.
+Per **evitar fer merge i simplement consultar** els canvis realitzats sense actualitzar el nostre repositori fem servir l'ordre **`git fetch[branca]`**.Per defecte, git fetch descàrrega tots els commits de origin.
 
-Després descarregar els commits, es mostren amb el prefix \* \[newtag\],permetent-nos executar git log sobre ells.
+Després descarregar els commits, es mostren amb el prefix **\* \[newtag\]**, permetent-nos executar `git log` sobre ells.
 
 #### **git revert**
 
 Si s'han comès errors en els últims commits, el més assenyat és esborrar tots els fitxers que hem afegit i fer un commit que torni a l'estat anterior. No obstant això, és possible que hi hagi fitxers que s'hagin actualitzat a trossos i aquesta acció consumeixi massa temps.
 
-L'ordre git revert &lt;commit&gt; -m "Missatge de l'commit" ens permet realitzar un commit en què es torni a l'estat en què estava el repositori just després de fer el commit commit.
+L'ordre **`git revert <commit> -m "Missatge de l'commit"`** ens permet realitzar un commit en què es torni a l'estat en què estava el repositori just després de fer el commit.
 
 ### **FUNCIONS DE GitHub**
 
@@ -537,15 +537,15 @@ Per crear un remot en GitHub podem anar a la pantalla d'inici oa la nostra llist
 
 **Públic o priva**t: Els repositoris amb un remot públic són visibles per a tothom i els privats, només pels que tinguin permisos de col·laboració.
 
-Crear README.md: Inicialitza el repositori amb un fitxer README.md que conté el títol de la mateixa.
+Crear **README.md**: Inicialitza el repositori amb un fitxer README.md que conté el títol de la mateixa.
 
-Crear .gitignore: Inicialitza el repositori amb un fitxer .gitignore.
+Crear .**gitignore**: Inicialitza el repositori amb un fitxer .gitignore.
 
 L'ideal és no inicialitzar el repositori des GitHub i fer-ho des de la terminal. Si no seleccionem cap dels dos últims fitxers, GitHub ens donarà instruccions per afegir un remot al nostre local \(les mateixes que vam veure anteriorment\).
 
 #### **Gestionar un remot**
 
-En un primer cop d'ull, GitHub ens permet veure el nombre de commits, branques, releases, contibutores i la llicència del nostre repositori; així com accedir a les issues i pull request \(que veurem més endavant\), els projectes \(que són una plataforma de [SCRUM,](https://en.wikipedia.org/wiki/Scrum_%28software_development%29)la wiki i les opcions de l'repositori.
+En un primer cop d'ull, GitHub ens permet veure el nombre de commits, branques, releases, contibutores i la llicència del nostre repositori; així com accedir a les **issues i pull request** \(que veurem més endavant\), els projectes \(que són una plataforma de [SCRUM,](https://en.wikipedia.org/wiki/Scrum_%28software_development%29)la wiki i les opcions de l'repositori.
 
 La wiki és una pàgina en la qual es pot \(i ha de\) escriure documentació sobre el dipòsit, els seus usos, funcions i tot allò que faciliti el treball amb el mateix.
 
@@ -553,21 +553,21 @@ Les opcions ens permeten canviar el nom i opcions bàsiques de l'remot \(fins i 
 
 #### **Issues**
 
-Si et trobes amb un problema a l'utilitzar el contingut d'un repositori pots enviar una issue explicant aquest problema de forma detallada. Després d'això, un administrador de l'repositori començarà una discussió pública amb tu tant per ajudar-te a soluciona rla com per arreglar allò que t'està causant el problema.
+Si et trobes amb un **problema** a l'utilitzar el contingut d'un repositori pots enviar una issue explicant aquest problema de forma detallada. Després d'això, un administrador de l'repositori començarà una **discussió** pública amb tu tant per ajudar-te a solucionar-la com per arreglar allò que t'està causant el problema.
 
 Molts repositoris incorporen seccions específiques en l'apartat de issues per gestionar més àgilment a què es refereix cadascuna i poder assignar així què administrador del fòrum s'ocupa de resoldre-les.
 
 #### **Fork**
 
-Per treballar amb un repositori és imperatiu tenir accés de col·laboració a aquest. Imagina el caos que crearia que tothom pogués escriure [alrepositori de](https://github.com/torvalds/linux)Linux!Per poder editar un repositori aliè vam crear una còpia pròpia mitjançant un fork \(bifurcació\).
+Per treballar amb un repositori és imperatiu tenir accés de col·laboració a aquest. Imagina el caos que crearia que tothom pogués escriure al repositori de Linux! Per poder editar un repositori aliè, es va crear una còpia pròpia mitjançant un fork \(bifurcació\).
 
-Podem fer això des del botó "fork" que es troba a dalt a la dreta a la pàgina principal de l'repositori. Això crea una còpia de l'repositori en un remot al nostre nom. És equivalent a clonar el repositori i canviar el remot a un el nostre.
+Podem fer això des del botó "fork" que es troba a dalt a la dreta a la pàgina principal de l'repositori. Això **crea una còpia de l'repositori en un remot al nostre nom**. És equivalent a clonar el repositori i canviar el remot a un el nostre.
 
-Un cop fet el nostre fork, podem clonar i treballar sobre ell com vulguem, actualitzant al nostre remot quan vulguem. Per afegir els nostres canvis a l'repositori original vam crear una pull request.
+Un cop fet el nostre fork, podem clonar i treballar sobre ell com vulguem, actualitzant al nostre remot quan vulguem. **Per afegir** els nostres canvis a l'repositori original vam crear una **pull request**.
 
 #### **Pull Request**
 
-Un cop haguem fet els canvis que volem al nostre fork de l'repositori, premem el botó "**pull reques**t" de la pàgina principal del nostre **fork** per iniciar una Pull Request o PR.
+Un cop haguem fet els canvis que volem al nostre fork del repositori, premem el botó "**pull reques**t" de la pàgina principal del nostre **fork** per iniciar una Pull Request o PR.
 
 Després d'iniciar la PR, els administradors del repositori original  han de comprovar que els teus canvis siguin viables per introduir-los al repositori original i t'indicaran si has de fer modificacions al contingut del teu PR. Un cop sigui acceptada, faran **`merge`** de la teva PR amb el repositori original i els teus canvis es veuran reflectits en el repositori original.
 
@@ -580,7 +580,5 @@ En projectes molt grans i complexos és mala pràctica fer push a màster direct
 
 ### Workflow col·laboratiu
 
-![Esquema de l&apos;&#xFA;s de git col&#xB7;laboratiu](../.gitbook/assets/image.png)
-
-
+![Protocol d&apos;&#xFA;s del treball col&#xB7;laboratiu](../.gitbook/assets/git-workflow-col-laboratiu.png)
 
