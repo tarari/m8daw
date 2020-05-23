@@ -25,5 +25,13 @@ El procés que acompanya qualsevol operació amb una aplicació web es basa en a
 
 Quan s'estableix una comunicació entre dos equips cal tenir en compte el rol que assumeix cadascú en la comunicació, és a dir, si parlem de l'emissor que transmet el missatge o bé el receptor que rep el missatge. En termes de computació, podem parlar també del **client**, qui sol·licita un recurs \( creant un llenguatge associat per indicar qui, què i com vol el recurs - **protocol**\) i servidor, qui ofereix el recurs \(creant un llenguatge associat per indicar què, a qui i com pot oferir el recurs\).
 
+### El model OSI es construeix per capes
 
+Imagine una comunicació típica, una consulta a Internet, per exemple una consulta a la pàgina de la nostra escola:
+
+**`https://escolesnuria.cat`** aquí som clients i qui ens servirà la pàgina es diu servidor.
+
+
+
+**\`\`**
 
