@@ -25,7 +25,7 @@ Algunes de les seves característiques més notables són:
 * Gestió de l'ample de banda i d'espai en disc per usuari
 * Directoris personals chroot\(\)
 * Estadístiques en temps real a Text, HTML o XML
-* autenti fi cació d'usuaris amb MySQL, PostgreSQL, LDAP , ...
+* autentificació d'usuaris amb MySQL, PostgreSQL, LDAP , ...
 * Opcions avançades de seguretat
 
 Podríem citar que s'utilitza molt, per exemple en el FTP públic de RedIris\(ftp://ftp.rediris.es\).

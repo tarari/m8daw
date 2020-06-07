@@ -6,7 +6,11 @@ description: >-
 
 # DNS
 
-Servei DNS
+## Servei DNS
+
+El servei DNS proporciona la capacitat de traducció de IP's a noms d'internet i viceversa.
+
+
 
 ## Comprovacions i proves
 
