@@ -27,11 +27,21 @@ Quan s'estableix una comunicació entre dos equips cal tenir en compte el rol qu
 
 ### El model OSI es construeix per capes
 
-Imagine una comunicació típica, una consulta a Internet, per exemple una consulta a la pàgina de la nostra escola:
+Imaginem una comunicació típica, una consulta a Internet, per exemple una consulta a la pàgina de la nostra escola:
 
 **`https://escolesnuria.cat`** aquí som clients i qui ens servirà la pàgina es diu servidor.
 
+Pensem en el procediment:
+
+**Request** al servidor que conté la pàgina HTML que ens servirà el servidor seguint la nostra petició. protocol HTTP
+
+Servidor a través d'un programari, processa i extreu la pàgina HTML, i **respon** al client a través de protocol HTTP.
+
+Tot aquest procediment es realitza de forma immediata \(o no\) de manera que si hem de pensar com es fa, ens hem de plantejar un model d'estudi per capes.
+
+Les dades passen en sentit descendent a través de les capes transformant-se \( encapsulació \) fins poder arribar al medi físic on es transmetre a l'equip de destinació a través d'impulsos elèctrics. En arribar a la destinació es procedeix de nou a encapsular segons el protocol de cada capa per arribar finalment a destinació.
+
+![Nivells OSI en una comunicaci&#xF3;](.gitbook/assets/osi.png)
 
 
-**\`\`**
 
