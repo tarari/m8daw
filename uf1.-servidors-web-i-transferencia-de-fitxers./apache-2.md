@@ -6,7 +6,7 @@ description: Servidor HTTP
 
 ## Instal·lació
 
-Com a sudoer
+Com a `sudoer`
 
 ```text
  apt -y install apache2
@@ -14,5 +14,5 @@ Com a sudoer
 
 La configuració resultant del servidor Apache es troba en diferents arxius, sent el principal a **`/etc/apache2/apache2.conf`**
 
-
+Concepte de VirtualHost o equip Virtual.
 
