@@ -18,3 +18,11 @@ Connexió segura de shell
 
 \`\`
 
+### scp
+
+Copiar fitxers de client a remot o viceversa
+
+De local a remot, amb l'usuari toni de l'equip 123.123.123.123, a la carpeta personal de l'usuari:
+
+`scp bar.txt toni@123.123.123.123:~/`
+
