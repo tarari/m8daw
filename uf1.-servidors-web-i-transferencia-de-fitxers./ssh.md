@@ -26,3 +26,7 @@ De local a remot, amb l'usuari toni de l'equip 123.123.123.123, a la carpeta per
 
 `scp bar.txt toni@123.123.123.123:~/`
 
+I al revés, creant en local un nou fitxer anomenat _new.txt_
+
+`scp toni@123.123.123.123:~/bar.txt ./new.txt`
+
