@@ -12,7 +12,7 @@ description: >-
 {% hint style="info" %}
    
  ![](.gitbook/assets/by-nc.eu.png)   
-**Desplegament d'aplicacions web** by [Toni Jiménez](https://t-jimenez.gitbook.io/desenvolupament-d-apps-en-php/) is licensed under a [Creative Commons Reconocimiento-NoComercial 4.0 Internacional License](http://creativecommons.org/licenses/by-nc/4.0/).
+**Desplegament d'aplicacions web** by [Toni Jiménez](https://t-jimenez.gitbook.io/desplegament-d-aplicacions-web/) is licensed under a [Creative Commons Reconocimiento-NoComercial 4.0 Internacional License](http://creativecommons.org/licenses/by-nc/4.0/).
 
 **Toni Jiménez** [**&lt;t.jimenez@escolesnuria.cat**](mailto:t.jimenez@escolesnuria.cat)**&gt;**
 {% endhint %}
