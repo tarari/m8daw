@@ -16,5 +16,18 @@ La configuració resultant del servidor Apache es troba en diferents arxius, sen
 
 ### Concepte de VirtualHost o equip Virtual.
 
-Un servidor apache proveeix servei web potencialment a molts dominis d'internet \(ServerName\) 
+Un servidor apache proveeix servei web potencialment a molts dominis d'internet. Només cal crear un fitxer de "site" al directori `/etc/apache2/sites-available` i configurar adequadament unes quantes línies de directives.
+
+Mirem com quedaria si per exemple creem un fitxer **Prova.conf** que dona servei a un hipotètic domini **prova.local**:
+
+```text
+<VirtualHost *:80>
+    ServerName prova.local
+    ServerAdmin webmaster@prova.local
+    DocumentRoot /var/www/prova/public_html
+    ErrorLog /var/log/apache2/prova.local.error.log
+    CustomLog /var/log/apache2/prova.local.access.log combined
+    LogLevel warn
+</VirtualHost>
+```
 
