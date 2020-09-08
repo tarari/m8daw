@@ -18,7 +18,7 @@ La configuració resultant del servidor Apache es troba en diferents arxius, sen
 
 Un servidor apache proveeix servei web potencialment a molts dominis d'internet. Només cal crear un fitxer de "site" al directori `/etc/apache2/sites-available` i configurar adequadament unes quantes línies de directives.
 
-Mirem com quedaria si per exemple creem un fitxer **Prova.conf** que dona servei a un hipotètic domini **prova.local**:
+Mirem com quedaria si per exemple creem un fitxer p**rova.conf** que dona servei a un hipotètic domini **prova.local**:
 
 ```text
 <VirtualHost *:80>
@@ -29,5 +29,19 @@ Mirem com quedaria si per exemple creem un fitxer **Prova.conf** que dona servei
     CustomLog /var/log/apache2/prova.local.access.log combined
     LogLevel warn
 </VirtualHost>
+```
+
+Caldria després habilitar el nou virtualhost
+
+```text
+a2ensite prova.conf
+```
+
+i reiniciar o recarregar la nova configuració
+
+```text
+systemctl restart apache2
+-o-
+systemctl reload apache2
 ```
 
