@@ -45,3 +45,24 @@ systemctl restart apache2
 systemctl reload apache2
 ```
 
+Edita, si vols per provar una pàgina de prova index.html al directori que marca el **DocumentRoot `(/var/www/prova/index.html)`**
+
+```markup
+<html>
+<body>
+<div style="width: 100%; font-size: 40px; font-weight: bold; text-align: center;">
+Virtual Host Prova
+</div>
+</body>
+</html>
+```
+
+Modifiqueu, per provar,  afegint la següent línia al fitxer **`/etc/hosts`**, això ens permet resoldre diversos noms DNS amb la mateixa IP,  provem en local \(127.0.0.1\)
+
+```markup
+127.0.0.1     localhost
+127.0.0.1     prova.local
+```
+
+Al teu navegador local introdueix l'adreça **`http://prova.local`** i comprova.
+
