@@ -53,5 +53,7 @@ Les dades passen en sentit descendent a través de les capes transformant-se \( 
 
 ![Nivells OSI en una comunicaci&#xF3;](.gitbook/assets/osi.png)
 
+## SSH. Gestió remota
+
 
 
