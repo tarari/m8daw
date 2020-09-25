@@ -31,7 +31,105 @@ sudo apt install apache2
 
 Un cop confirmada la instal·lació, `apt`s'instal·larà Apache i totes les dependències necessàries.
 
+#### Comprovar el seu servidor web
 
+Al final del procés d'instal·lació, Debian inicia Apache. El servidor web ja hauria d'estar en funcionament.
+
+Fem una verificació amb el sistema `systemd init` per saber si es troba en execució el servei escrivint el següent:
+
+```bash
+sudo systemctl status apache2
+```
+
+```bash
+Output● apache2.service - The Apache HTTP Server
+   Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2018-09-05 19:21:48 UTC; 13min ago
+ Main PID: 12849 (apache2)
+   CGroup: /system.slice/apache2.service
+           ├─12849 /usr/sbin/apache2 -k start
+           ├─12850 /usr/sbin/apache2 -k start
+           └─12852 /usr/sbin/apache2 -k start
+
+Sep 05 19:21:48 apache systemd[1]: Starting The Apache HTTP Server...
+Sep 05 19:21:48 apache systemd[1]: Started The Apache HTTP Server.
+```
+
+Com pot veure en aquest resultat, sembla que el servei es va iniciar correctament. No obstant això, la millor manera de comprovar-ho és sol·licitar una pàgina d'Apache.
+
+Es pot accedir a la pàgina de destinació per defecte d'Apache per confirmar que el programari funcioni correctament mitjançant la seva IP: Si no coneix l'adreça IP del seu servidor, pot obtenir-la de diverses formes des de la línia d'ordres.
+
+Proveu escriure això en la línia d'ordres del seu servidor:
+
+```bash
+hostname -I
+```
+
+Obtindrem algunes adreces separades per espais. Podeu provar cadascuna d'elles en el seu navegador web per veure si funcionen.
+
+Una alternativa és utilitzar l'eina `curl`, que hauria de proporcionar la seva adreça IP pública tal com es veu des d'una altra ubicació a Internet.
+
+Primer, instal `curl`utilitzant `apt`:
+
+```text
+sudo apt install curl
+```
+
+Després, utilitzeu `curl`per recuperar icanhazip.com mitjançant IPv4:
+
+```text
+curl -4 icanhazip.com
+```
+
+Quan tinguem l'adreça IP del seu servidor, introduim  a la barra d'adreces del  navegador:
+
+```text
+http://IP
+```
+
+Hauria de veure la pàgina web per defecte d'Apache de Debian.
+
+#### Administrar el procés de Apache
+
+Ara el servidor web funciona, repassem alguns **comandaments d'administració bàsics**.
+
+Per aturar el servidor web, escrivim el següent:
+
+```text
+sudo systemctl stop apache2
+```
+
+Per iniciar el servidor web quan s'aturi, escrivim el següent:
+
+```text
+sudo systemctl start apache2
+```
+
+Per aturar i després iniciar el servei de nou, escrivim el següent:
+
+```text
+sudo systemctl restart apache2
+```
+
+Si només realitza canvis de configuració, Apache sovint pot recarregar sense tancar connexions. Per fer-ho, utilitzem aquesta comanda:
+
+```text
+sudo systemctl reload apache2
+```
+
+Per defecte, Apache està configurat per a iniciar-se automàticament quan el servidor ho fa. Si no és el que vol, desactivem aquest comportament escrivint el següent:
+
+```text
+sudo systemctl disable apache2
+```
+
+Per tornar a habilitar el servei de manera que es carregui en l'inici, escrivim el següent:
+
+```text
+sudo systemctl enable apache2
+```
+
+Ara, Apache hauria d'iniciar de forma automàtica quan el servidor ho faci de nou.
 
 ## Servidors ftp
 
