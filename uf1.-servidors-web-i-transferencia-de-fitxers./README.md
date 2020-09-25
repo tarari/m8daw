@@ -131,6 +131,113 @@ sudo systemctl enable apache2
 
 Ara, Apache hauria d'iniciar de forma automàtica quan el servidor ho faci de nou.
 
+#### Configurar hosts virtuals
+
+Quan fem servir el servidor web **Apache**, és recomanable utilitzar **`_hosts virtuals`** \_ \(similars als blocs de servidor de Nginx\) per encapsular detalls de configuració i **allotjar més d'un domini des d'un únic servidor**. Configurarem un domini anomenat **exemple.com** , però haurem de **canviar-lo pel  propi nom de domini DNS** . 
+
+Per defecte, Apache 2 en Debian  té habilitat un bloc de servidor que està configurat per a proporcionar documents de directori `/var/www/html`. Si bé, això funciona bé per a un sol lloc, pot ser difícil de manejar si allotgem diversos dominis \(hosting compartit\). En comptes de modificar `/var/www/html`, crearem una estructura de directori dins `/var/www`per al nostre lloc **exemple.com** i deixarem `/var/www/html`com a directori per defecte que es proveirà si una sol·licitud de client no coincideix amb altres llocs.
+
+Creem el directori per **exemple.com** , utilitzant l'indicador `-p`per crear qualsevol directori principal necessari si no està construit:
+
+```text
+sudo mkdir -p /var/www/exemple.com/html
+```
+
+A continuació, assignem la propietat de directori amb la variable d'entorn `$USER`:
+
+```text
+sudo chown -R $USER:$USER /var/www/example.com/html
+```
+
+Els permisos de les seves _root web_ han de ser correctes sinó hem canviat el seu valor `unmask`, però podem comprovar-escrivint el següent:
+
+```text
+sudo chmod -R 755 /var/www/exemple.com
+```
+
+A continuació, creem una pàgina d'exemple `index.html`utilitzant `nano o pico`o el vostre editor favorit:
+
+```text
+pico /var/www/exemple.com/html/index.html
+```
+
+Dins d'ella, afegim el següent exemple d'HTML:/var/www/exemple.com/html/index.html
+
+```text
+<html>
+    <head>
+        <title>Welcome!</title>
+    </head>
+    <body>
+        <h1>OK!  Tot correcte!</h1>
+    </body>
+</html>
+```
+
+Desem i tanquem el fitxer quan acabi.
+
+Perquè Apache proporcioni aquest contingut, cal crear un arxiu de host virtual amb les directives correctes. En lloc de modificar el fitxer de configuració per defecte situat a `/etc/apache2/sites-available/000-default.conf`directament, crearem un de nou a :`/etc/apache2/sites-available/exemple.com.conf`
+
+```text
+sudo pico /etc/apache2/sites-available/exemple.com.conf
+```
+
+Enganxem en el següent bloc de configuració, similar a l'predeterminat, però actualitzat per al nostre nou directori i nom de domini:/etc/apache2/sites-available/exemple.com.conf
+
+```text
+<VirtualHost *:80>
+    ServerAdmin admin@exemple.com
+    ServerName exemple.com
+    ServerAlias www.exemple.com
+    DocumentRoot /var/www/exemple.com/html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Recordem que vam canviar **`DocumentRoot`**pel nostre nou directori i _`ServerAdmin`_per un correu electrònic a què pugui accedir l'administrador de el lloc **exemple.com** . També afegim dues directives: **`ServerName`**, que estableix el domini de base que hauria de coincidir per a aquesta definició d'amfitrió virtual, i **ServerAlias**, que defineix més noms que haurien de coincidir com si fossin el nom de base.
+
+Desem i tanquem el fitxer quan acabem.
+
+Habilitarem l'arxiu amb l'eina **`a2ensite`**:
+
+```bash
+sudo a2ensite exemple.com.conf
+```
+
+Deshabilitem el lloc predeterminat definit en `000-default.conf`:
+
+```bash
+sudo a2dissite 000-default.conf
+```
+
+A continuació, farem una prova per veure que no hi hagi errors de configuració:
+
+```text
+sudo apache2ctl configtest
+```
+
+Hauríem de veure el següent resultat:
+
+```text
+OutputSyntax OK
+```
+
+Reiniciem Apache per implementar els seus canvis:
+
+```text
+sudo systemctl restart apache2
+```
+
+Amb això, Apache2 hauria de ser el servidor del teu nom de domini. Podem provar això visitant . Allà, hauria de veure alguna cosa com el següent:`http://exemple.com`  
+
+
+{% hint style="info" %}
+Atenció. En cas de ser prova local, cal configurar **`/etc/hosts`** per tal que reconegui el ServerName. Afegim la línia:
+
+**`127.0.1.1      exemple.com`**
+{% endhint %}
+
 ## Servidors ftp
 
 Un servidor ftp és també un servidor de fitxers, de qualsevol fitxer.
