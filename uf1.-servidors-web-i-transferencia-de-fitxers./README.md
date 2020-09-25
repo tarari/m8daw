@@ -13,7 +13,23 @@ Un servidor web és un servidor especialitzat de fitxers **html**. S'afegeixen m
 
 ### Servidor Apache2
 
-Configuració
+#### Instal·lar Apache
+
+Apache està disponible dins dels repositoris de programari per defecte de Debian, el que permet instal·lar-utilitzant eines convencionals d'administració de paquets.
+
+Comencem actualitzant l'índex de paquets locals perquè reflecteixin els canvis anteriors:
+
+```text
+sudo apt update
+```
+
+A continuació, instal el paquet `apache2`:
+
+```text
+sudo apt install apache2
+```
+
+Un cop confirmada la instal·lació, `apt`s'instal·larà Apache i totes les dependències necessàries.
 
 
 
