@@ -7,11 +7,17 @@ description: >-
 
 # UF1. Servidors web i transferència de fitxers.
 
-### Servidors web
+## Servidors web
 
-Un servidor web és un servidor especialitzat de fitxers **html**. 
+Un servidor web és un servidor especialitzat de fitxers **html**. S'afegeixen mòduls que permeten donar caracterítiques addicionals, com ara preprocessar PHP.
 
-### Servidors ftp
+### Servidor Apache2
+
+Configuració
+
+
+
+## Servidors ftp
 
 Un servidor ftp és també un servidor de fitxers, de qualsevol fitxer.
 
@@ -45,34 +51,35 @@ apt install pure-ftpd
 
 ### **Rutes i fitxers de configuració**
 
-_\# Directori de configuracions del servidor_  
+```bash
+# Directori de configuracions del servidor
 /etc/pure-ftpd/conf
-
-_\# Fitxer de contrasenyes d'usuaris virtuals._  
+# Fitxer de contrasenyes d'usuaris virtuals.
 /etc/pure-ftpd/pureftpd.pdb
-
-_\# Fitxer de configuració de funcionament del PureFTPd_  
+# Fitxer de configuració de funcionament del PureFTPd
 /etc/default/pure-ftpd-common
+```
 
 ### **Accés Anònim**
 
-Per donar accés anònim al FTP haurem de tenir un compte del sistema anomenada 'ftp'. No li donarem cap shell vàlid, simplement un directori home de treball. Aquest directori serà el que es farà servir com a directori anònim. Vegeu també les directives **NoAnonymous** i **AnonymousOnly** en el directori _/etc /pure-ftpd/conf._
+Per donar accés anònim al FTP haurem de tenir un compte del sistema anomenada 'ftp'. No li donarem cap shell vàlid, simplement un directori home de treball. Aquest directori serà el que es farà servir com a directori anònim. Vegeu també les directives **NoAnonymous** i **AnonymousOnly** en el directori _`/etc/pure-ftpd/conf`._
 
-_\# Creem un usuari anomenat ftp sense shell i amb directori /var/ftp._  
-_\# El directori home d'aquest usuari, serà el directori dels anònims._  
+```bash
+# Creem un usuari anomenat ftp sense shell i amb directori /var/ftp.
+# El directori home d'aquest usuari, serà el directori dels anònims.
 adduser ftp --shell /sbin/nologin --home /var/ftp
+# Revisarem les directives:
+/etc/pure-ftpd/conf/AnonymousOnly
+# Si està a yes només permet accessos anònims.
+/etc/pure-ftpd/conf/NoAnonymous
+# Si està a yes només permet accés a usuaris autenticat.
+# Si està a no permetrà l'accés a usuari anònims també.
+# Per accelerar la connexió al servidor, podem desactivar la resolució inversa
+# Per a això vam crear una directiva DontResolve
+echo "yes"> /etc/pure-ftpd/conf/DontResolve
+```
 
-_\# Revisarem les directives:_  
-/etc/pure-ftpd/conf/AnonymousOnly  
-_\# Si està a_ _**yes**_ _només permet accessos anònims._
-
-/etc/pure-ftpd/conf/NoAnonymous  
-_\# Si està a yes només permet accés a usuaris autenticat._  
-_\# Si està a no permetrà l'accés a usuari anònims també._
-
-_\# Per accelerar la connexió al servidor, podem desactivar la resolució inversa_  
-_\# Per a això vam crear una directiva DontResolve_  
-echo "yes"&gt; /etc/pure-ftpd/conf/DontResolve
+\_\_
 
 ### **Directives de configuració**
 
