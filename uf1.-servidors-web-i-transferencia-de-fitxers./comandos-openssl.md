@@ -14,9 +14,9 @@ Generar un  a certificat auto-signat \(mireu [How to Create and Install an Apach
 
 Generar un _certificate signing request_ \(CSR\) per a una clau privada existent
 
-* openssl req -out CSR.csr -key privateKey.key -new
+**`openssl req -out CSR.csr -key privateKey.key -new`**
 
-Generate a certificate signing request based on an existing certificate
+Generar a certificate signing request based on an existing certificate
 
 * openssl x509 -x509toreq -in certificate.crt -out CSR.csr -signkey privateKey.key
 
