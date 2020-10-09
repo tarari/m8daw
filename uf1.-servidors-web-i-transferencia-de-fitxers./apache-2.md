@@ -66,3 +66,23 @@ Modifiqueu, per provar,  afegint la següent línia al fitxer **`/etc/hosts`**, 
 
 Al teu navegador local introdueix l'adreça **`http://prova.local`** i comprova.
 
+## Redireccionament cap a lloc segur
+
+Si volem que el noste site ens reenviï cap a lloc segur https, si el tenim implementat, seria ficar aquesta directiva dins la configuració del VirtualHost:
+
+```markup
+Redirect permanent / https://domini.com
+```
+
+També es pot fer a través de fitxers .htaccess, en cas que no podem modificar el VirtualHost, si habilitem la reescriptura de URL:
+
+```markup
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+```
+
+
+
+
+
