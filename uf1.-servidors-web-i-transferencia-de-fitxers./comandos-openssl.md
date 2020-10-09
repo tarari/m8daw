@@ -16,11 +16,15 @@ Generar un _certificate signing request_ \(CSR\) per a una clau privada existent
 
 **`openssl req -out CSR.csr -key privateKey.key -new`**
 
-Generar a certificate signing request based on an existing certificate
+Generar un CSR basat en certificat existent 
 
-* openssl x509 -x509toreq -in certificate.crt -out CSR.csr -signkey privateKey.key
+**`openssl x509 -x509 toreq -in certificate.crt -out CSR.csr -signkey privateKey.key`**
 
-Remove a passphrase from a private key
+Eliminar  un passphrase d'una clau privada
 
-* openssl rsa -in privateKey.pem -out newPrivateKey.pem
+**`openssl rsa -in privateKey.pem -out newPrivateKey.pem`**
+
+## Certificat autosignat \(sense CSR\)
+
+
 
