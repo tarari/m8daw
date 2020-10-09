@@ -78,8 +78,8 @@ També es pot fer a través de fitxers .htaccess, en cas que no podem modificar 
 
 ```markup
 RewriteEngine On
-RewriteCond %{HTTPS} !=on
-RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://domini.com/$1 [L,R=301]
 ```
 
 
