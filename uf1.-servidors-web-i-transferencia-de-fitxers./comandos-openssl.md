@@ -53,13 +53,61 @@ Creem el certificat auto-signat
 
 Creem el directori **`/etc/apache2/ssl`** on deixar el certificat i la clau privada:
 
-```text
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+Generem clau privada en primer lloc:  
+
+
+```bash
+/etc/apache2/ssl> sudo openssl genrsa -aes128 -out domini.key 2048
+Generating RSA private key, 2048 bit long modulus
+......+++
+....................................................................+++
+e is 65537 (0x010001)
+Enter pass phrase for server.key:              # password
+Verifying - Enter pass phrase for server.key:  # confirma
 ```
 
+Eliminem passphrase:
 
+```text
+/etc/apache2/ssl> openssl rsa -in domini.key -out domini.key
+Enter pass phrase for server.key:     # passphrase set above
+writing RSA key
+```
 
+Creem el CSR, pas previ al certificat, és el fitxer que enviem a l'entitat certificadora CA.
 
+```bash
+/etc/apache2/ssl > openssl req -new -days 3650 -key server.key -out server.csr
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:ES   # pais
+State or Province Name (full name) [Some-State]:BCN   # state
+Locality Name (eg, city) []:Castelldefels  # ciutat
+Organization Name (eg, company) []: Company   # companyia
+Organizational Unit Name (eg, section) []:Informatica   # departament
+Common Name (e.g. server FQDN or YOUR name) []:domini.com   # FQDN (ServerName)
+Email Address []:webmaster@domini   # admin email
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+
+```
+
+Crear CRT a partir del CSR i de la clau privada
+
+```bash
+/etc/apache2/ssl > openssl x509 -in server.csr -out server.crt -req -signkey server.key -days 3650
+Signature ok
+subject=C = ES, ST = BCN, L = Castelldefels, O = Company, OU = Informatica, CN = domini.com, emailAddress = webmaster@domini
+Getting Private key
+```
 
 
 
