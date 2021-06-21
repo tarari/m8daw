@@ -55,5 +55,37 @@ Les dades passen en sentit descendent a través de les capes transformant-se \( 
 
 ## SSH. Gestió remota
 
+Si volem una gestió segura a través de la shell, hem d'utilitzar un protocol que ens permeti encriptar la comunicació. SSH , Secure shell ens permet assegurar la comunicació   entre host i client a través de l'intercanvi de claus.
+
+**Host** es refereix a el servidor remot a què estàs intentant accedir, mentre que el **client** és l'equip que estàs utilitzant per accedir a l'amfitrió. Hi ha tres tecnologies de xifrat diferents utilitzades per SSH:
+
+1. Xifrat simètric  
+2. Xifrat asimètric  
+3. Hashing
+
+![Xifrat sim&#xE8;tric](.gitbook/assets/symmetric-vs-asymmetric-symmetric-example.png)
+
+![Xifrat asim&#xE9;tric amb clau p&#xFA;blica i privada](.gitbook/assets/symmetric-vs-asymmetric-asymmetric-encryption-example.png)
+
+La forma en què funciona SSH és mitjançant l'ús d'un model client-servidor per permetre l'autenticació de dos sistemes remots i el xifrat de les dades que passa entre ells.
+
+SSH opera al port TCP 22 per defecte \(encara que això es pot canviar si cal\). El host \(servidor\) escolta al port 22 \(o qualsevol altre port SSH assignat\) per a les connexions entrants. Organitza la connexió segura mitjançant l'autenticació de client i l'obertura de l'entorn de shell correcte si la verificació té èxit.
+
+#### El client té la paraula
+
+El client ha d'iniciar la connexió SSH iniciant el protocol TCP amb el servidor, assegurant una connexió simètrica segura, verificar si la identitat mostrada pel servidor coincideix amb els registres anteriors \(normalment gravats en un arxiu de magatzem de claus RSA\) i presenta les credencials d'usuari necessàries per autenticar la connexió.
+
+Hi ha dues etapes per establir una connexió: primer els dos sistemes han d'acordar estàndards de xifrat per protegir futures comunicacions, i segon, l'usuari ha autenticar-se. Si les credencials coincideixen, es concedeix accés a l'usuari.
+
+## HTTP 
+
+En els protocols basats en el model client-servidor, com és el cas de l'HTTP, una sessió consta de tres fases: 
+
+1. El client estableix una connexió TCP \(o la connexió corresponent si la capa de transport correspon a un altre protocol\). 
+2. El client mana la seva petició, i espera per la resposta. 
+3. El servidor processa la petició, i respon amb un codi d'estat i les dades corresponents. 
+
+A partir del protocol HTTP/1.1 la connexió, no es tanca en finalitzar la tercera fase, i el client pot continuar realitzant peticions. Això significa que la segona i tercera fase, poden repetir-se qualsevol nombre de vegades.
+
 
 
