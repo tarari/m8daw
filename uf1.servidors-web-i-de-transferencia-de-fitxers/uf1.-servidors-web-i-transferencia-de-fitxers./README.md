@@ -19,13 +19,13 @@ Apache està disponible dins dels repositoris de programari per defecte de Debia
 
 Comencem actualitzant l'índex de paquets locals perquè reflecteixin els canvis anteriors:
 
-```text
+```
 sudo apt update
 ```
 
 A continuació, instal el paquet `apache2`:
 
-```text
+```
 sudo apt install apache2
 ```
 
@@ -71,19 +71,19 @@ Una alternativa és utilitzar l'eina `curl`, que hauria de proporcionar la seva 
 
 Primer, instal `curl`utilitzant `apt`:
 
-```text
+```
 sudo apt install curl
 ```
 
 Després, utilitzeu `curl`per recuperar icanhazip.com mitjançant IPv4:
 
-```text
+```
 curl -4 icanhazip.com
 ```
 
 Quan tinguem l'adreça IP del seu servidor, introduim  a la barra d'adreces del  navegador:
 
-```text
+```
 http://IP
 ```
 
@@ -95,37 +95,37 @@ Ara el servidor web funciona, repassem alguns **comandaments d'administració b�
 
 Per aturar el servidor web, escrivim el següent:
 
-```text
+```
 sudo systemctl stop apache2
 ```
 
 Per iniciar el servidor web quan s'aturi, escrivim el següent:
 
-```text
+```
 sudo systemctl start apache2
 ```
 
 Per aturar i després iniciar el servei de nou, escrivim el següent:
 
-```text
+```
 sudo systemctl restart apache2
 ```
 
 Si només realitza canvis de configuració, Apache sovint pot recarregar sense tancar connexions. Per fer-ho, utilitzem aquesta comanda:
 
-```text
+```
 sudo systemctl reload apache2
 ```
 
 Per defecte, Apache està configurat per a iniciar-se automàticament quan el servidor ho fa. Si no és el que vol, desactivem aquest comportament escrivint el següent:
 
-```text
+```
 sudo systemctl disable apache2
 ```
 
 Per tornar a habilitar el servei de manera que es carregui en l'inici, escrivim el següent:
 
-```text
+```
 sudo systemctl enable apache2
 ```
 
@@ -133,37 +133,37 @@ Ara, Apache hauria d'iniciar de forma automàtica quan el servidor ho faci de no
 
 #### Configurar hosts virtuals
 
-Quan fem servir el servidor web **Apache**, és recomanable utilitzar **`_hosts virtuals`** \_ \(similars als blocs de servidor de Nginx\) per encapsular detalls de configuració i **allotjar més d'un domini des d'un únic servidor**. Configurarem un domini anomenat **exemple.com** , però haurem de **canviar-lo pel  propi nom de domini DNS** . 
+Quan fem servir el servidor web **Apache**, és recomanable utilitzar **`_hosts virtuals`** \_ (similars als blocs de servidor de Nginx) per encapsular detalls de configuració i **allotjar més d'un domini des d'un únic servidor**. Configurarem un domini anomenat **exemple.com** , però haurem de **canviar-lo pel  propi nom de domini DNS** .&#x20;
 
-Per defecte, Apache 2 en Debian  té habilitat un bloc de servidor que està configurat per a proporcionar documents de directori `/var/www/html`. Si bé, això funciona bé per a un sol lloc, pot ser difícil de manejar si allotgem diversos dominis \(hosting compartit\). En comptes de modificar `/var/www/html`, crearem una estructura de directori dins `/var/www`per al nostre lloc **exemple.com** i deixarem `/var/www/html`com a directori per defecte que es proveirà si una sol·licitud de client no coincideix amb altres llocs.
+Per defecte, Apache 2 en Debian  té habilitat un bloc de servidor que està configurat per a proporcionar documents de directori `/var/www/html`. Si bé, això funciona bé per a un sol lloc, pot ser difícil de manejar si allotgem diversos dominis (hosting compartit). En comptes de modificar `/var/www/html`, crearem una estructura de directori dins `/var/www`per al nostre lloc **exemple.com** i deixarem `/var/www/html`com a directori per defecte que es proveirà si una sol·licitud de client no coincideix amb altres llocs.
 
 Creem el directori per **exemple.com** , utilitzant l'indicador `-p`per crear qualsevol directori principal necessari si no està construit:
 
-```text
+```
 sudo mkdir -p /var/www/exemple.com/html
 ```
 
 A continuació, assignem la propietat de directori amb la variable d'entorn `$USER`:
 
-```text
+```
 sudo chown -R $USER:$USER /var/www/example.com/html
 ```
 
 Els permisos de les seves _root web_ han de ser correctes sinó hem canviat el seu valor `unmask`, però podem comprovar-escrivint el següent:
 
-```text
+```
 sudo chmod -R 755 /var/www/exemple.com
 ```
 
 A continuació, creem una pàgina d'exemple `index.html`utilitzant `nano o pico`o el vostre editor favorit:
 
-```text
+```
 pico /var/www/exemple.com/html/index.html
 ```
 
 Dins d'ella, afegim el següent exemple d'HTML:/var/www/exemple.com/html/index.html
 
-```text
+```
 <html>
     <head>
         <title>Welcome!</title>
@@ -178,13 +178,13 @@ Desem i tanquem el fitxer quan acabi.
 
 Perquè Apache proporcioni aquest contingut, cal crear un arxiu de host virtual amb les directives correctes. En lloc de modificar el fitxer de configuració per defecte situat a `/etc/apache2/sites-available/000-default.conf`directament, crearem un de nou a :`/etc/apache2/sites-available/exemple.com.conf`
 
-```text
+```
 sudo pico /etc/apache2/sites-available/exemple.com.conf
 ```
 
 Enganxem en el següent bloc de configuració, similar a l'predeterminat, però actualitzat per al nostre nou directori i nom de domini:/etc/apache2/sites-available/exemple.com.conf
 
-```text
+```
 <VirtualHost *:80>
     ServerAdmin admin@exemple.com
     ServerName exemple.com
@@ -213,23 +213,23 @@ sudo a2dissite 000-default.conf
 
 A continuació, farem una prova per veure que no hi hagi errors de configuració:
 
-```text
+```
 sudo apache2ctl configtest
 ```
 
 Hauríem de veure el següent resultat:
 
-```text
+```
 OutputSyntax OK
 ```
 
 Reiniciem Apache per implementar els seus canvis:
 
-```text
+```
 sudo systemctl restart apache2
 ```
 
-Amb això, Apache2 hauria de ser el servidor del teu nom de domini. Podem provar això visitant . Allà, hauria de veure alguna cosa com el següent:`http://exemple.com`  
+Amb això, Apache2 hauria de ser el servidor del teu nom de domini. Podem provar això visitant . Allà, hauria de veure alguna cosa com el següent:`http://exemple.com`\
 
 
 {% hint style="info" %}
@@ -250,12 +250,12 @@ Algunes de les seves característiques més notables són:
 
 * Usuaris virtuals
 * Gestió de l'ample de banda i d'espai en disc per usuari
-* Directoris personals chroot\(\)
+* Directoris personals chroot()
 * Estadístiques en temps real a Text, HTML o XML
 * autentificació d'usuaris amb MySQL, PostgreSQL, LDAP , ...
 * Opcions avançades de seguretat
 
-Podríem citar que s'utilitza molt, per exemple en el FTP públic de RedIris\(ftp://ftp.rediris.es\).
+Podríem citar que s'utilitza molt, per exemple en el FTP públic de RedIris(ftp://ftp.rediris.es).
 
 ## Instal·lació del servidor FTP PureFTPd
 
@@ -263,10 +263,10 @@ Podríem citar que s'utilitza molt, per exemple en el FTP públic de RedIris\(ft
 
 [Pàgina Oficial de PureFTPd](http://www.pureftpd.org/project/pure-ftpd)
 
-_\# Instal·lació de l'aplicació_  
+_# Instal·lació de l'aplicació_\
 
 
-```text
+```
 apt install pure-ftpd
 ```
 
@@ -300,25 +300,25 @@ adduser ftp --shell /sbin/nologin --home /var/ftp
 echo "yes"> /etc/pure-ftpd/conf/DontResolve
 ```
 
-\_\_
+__
 
 ### **Directives de configuració**
 
-* Per introduir les directives de configuració es poden crear una a una en la carpeta **/etc/pure-ftpd/conf** creant un _fitxer amb el nom de la directiva_ \( començament de cada paraula en majúscules\) i el contingut corresponent.
+* Per introduir les directives de configuració es poden crear una a una en la carpeta **/etc/pure-ftpd/conf** creant un _fitxer amb el nom de la directiva_ ( començament de cada paraula en majúscules) i el contingut corresponent.
 * Una altra opció és ficar la directiva dins del fitxer **/etc/default/**pure-ftpd-common. La directiva haurà d'anar en majúscules i amb el valor correponent. Per exemple: **DONTRESOLVE = true**
 
 #### **Autenticació**
 
-Al servidor pureftpd podrem configurar els modes d'autenticació disponibles per accedir-hi. Una cosa que hem de fer és configurar si volem fer servir els **usuaris virtuals** \(usuaris del servei però no del sistema\)**,** i per a això hem de indicar-li que utilitzi en autenticació el fitxer de base de dades que conté aquests usuaris.
+Al servidor pureftpd podrem configurar els modes d'autenticació disponibles per accedir-hi. Una cosa que hem de fer és configurar si volem fer servir els **usuaris virtuals** (usuaris del servei però no del sistema)**,** i per a això hem de indicar-li que utilitzi en autenticació el fitxer de base de dades que conté aquests usuaris.
 
-_\# Atenció: aquesta configuració la farem quan anem a treballar amb usuaris virtuals._  
-_\# Si no hem creat usuaris virtuals la base de dades no existirà i donarà error a l'arrencar pureftpd._
+_# Atenció: aquesta configuració la farem quan anem a treballar amb usuaris virtuals._\
+_# Si no hem creat usuaris virtuals la base de dades no existirà i donarà error a l'arrencar pureftpd._
 
-_\# Accedim al directori d'autenticació:_  
+_# Accedim al directori d'autenticació:_\
 cd /etc/pure-ftpd/auth
 
-_\# Creem un enllaç simbòlic a la informació d'on es troba la base de dades._  
-_\# En indicar 50 ... estem indicant la prioritat en l'autenticació._  
+_# Creem un enllaç simbòlic a la informació d'on es troba la base de dades._\
+_# En indicar 50 ... estem indicant la prioritat en l'autenticació._\
 ln -s ../conf/PureDB 50pure
 
 #### **Altres directives**
@@ -327,53 +327,53 @@ Directives de configuració més importants que utilitzarem.
 
 Les directives de configuració, són fitxers que es troben al directori:
 
-/etc/pure-ftpd/conf  
+/etc/pure-ftpd/conf\
 
 
 Si alguna de les directives esmentades a continuació no existeix, hi haurem de crear un fitxer amb el nom d'aquesta directiva i emmagatzemar dins d'ell, els paràmetres corresponents a aquesta directiva.
 
 Una de les característiques que volem, és que els usuaris no puguin sortir del seu directori home:
 
-**ChrootEveryone yes**  
-  
-_\# Si aquesta directiva no està creada la crearem amb:_  
+**ChrootEveryone yes**\
+****\
+****_# Si aquesta directiva no està creada la crearem amb:_\
 nano /etc/pure-ftpd/conf/ChrootEveryone
 
-_\# I com a contingut del fitxer escriurem :_  
+_# I com a contingut del fitxer escriurem :_\
 yes
 
-_\# O tambiém podem fer el mateix amb les instrucció:_  
-echo "yes"&gt;/etc/pure-ftpd/conf/ChrootEveryone
+_# O tambiém podem fer el mateix amb les instrucció:_\
+echo "yes">/etc/pure-ftpd/conf/ChrootEveryone
 
-Una altra de les característiques que ha de posseir el servidor ftp és que disposi d'una zona de descàrrega pública \(usuaris anonymous\). Per a això hem d'acceptar connexions anònimes, amb el que hi ha d'haver la següent línia: **NoAnonymous no**
+Una altra de les característiques que ha de posseir el servidor ftp és que disposi d'una zona de descàrrega pública (usuaris anonymous). Per a això hem d'acceptar connexions anònimes, amb el que hi ha d'haver la següent línia: **NoAnonymous no**
 
-echo "no"&gt; /etc/pure-ftpd/conf/NoAnonymous  
+echo "no"> /etc/pure-ftpd/conf/NoAnonymous\
 
 
 Si volem que només permeti l'accés a usuaris anònims haurem de posar també la directiva:
 
-echo "yes"&gt; / etc / pure-ftpd / conf / AnonymousOnly  
+echo "yes"> / etc / pure-ftpd / conf / AnonymousOnly\
 
 
-Si volem tenir **usuaris virtuals** \(seran usuaris registrats, però que no tenen compte de shell en el sistema\), hem d'assegurar que la línia a continuació existeix i no està comentada.
+Si volem tenir **usuaris virtuals** (seran usuaris registrats, però que no tenen compte de shell en el sistema), hem d'assegurar que la línia a continuació existeix i no està comentada.
 
 Aquesta línia indica la localització del fitxer d'usuaris PureDB:
 
 more /etc/pure-ftpd/conf/PureDB
 
-_\# Mostrarà la ruta de la base de dades d'usuaris virtuals:_  
+_# Mostrarà la ruta de la base de dades d'usuaris virtuals:_\
 /etc/pure-ftpd/pureftpd.pdb
 
-Per evitar que algun usuari per distracció \(o maliciosament\) ens pugui omplir el servidor de fitxers, activarem uns **límits** màxims:
+Per evitar que algun usuari per distracció (o maliciosament) ens pugui omplir el servidor de fitxers, activarem uns **límits** màxims:
 
 per exemple podríem posar una Quota límit de 400 fitxers i 50 MB:
 
-echo "400 50"&gt;/etc/pure-ftpd /conf/Quota  
+echo "400 50">/etc/pure-ftpd /conf/Quota\
 
 
 Si volem que automàticament es creuen els directoris home dels usuaris, la primera vegada que es loguean ho farem amb:
 
-echo "yes"&gt; /etc/pure-ftpd/conf/CreateHomeDir  
+echo "yes"> /etc/pure-ftpd/conf/CreateHomeDir\
 
 
 Per posar màscares per defecte s'utilitza la directiva **umask.**En aquesta directiva s'indica mitjançant dos nombres **separats per un espai** els permisos per a fitxers i per directoris.
@@ -382,12 +382,12 @@ Per calcular-es resta a **777-umask = permisos finals**
 
 Per exemple:
 
-_\# 220 -&gt; umask per a fitxers_  
-_\# 444 -&gt; umask per directoris_  
-echo "220.444"&gt; /etc/pure-ftpd /conf /umask
+_# 220 -> umask per a fitxers_\
+_# 444 -> umask per directoris_\
+echo "220.444"> /etc/pure-ftpd /conf /umask
 
-_\# Ens dóna per defecte:_  
-Fitxers: -r-xr-xrwx  
+_# Ens dóna per defecte:_\
+Fitxers: -r-xr-xrwx\
 Directoris: d-wx-wx-wx
 
 **Més Directives de configuració**
@@ -415,48 +415,48 @@ Quan vam crear un usuari virtual haurem de associar-li un uid: identificador d'u
 
 Per crear aquest compte ho farem de la següent manera:
 
-_\# Primer crearem un grup ftpgroup per als usuaris FTP:_  
+_# Primer crearem un grup ftpgroup per als usuaris FTP:_\
 groupadd ftpgroup
 
-_\# a continuació vam crear el compte ftpuser:_  
+_# a continuació vam crear el compte ftpuser:_\
 useradd -g ftpgroup -d /dev/null -s /bin/nologin ftpuser
 
 a partir d'ara quan afegim usuaris al pure-ftpd, li podrem indicar que l'usuari del sistema associat és ftpuser, i dir-li que faci la carpeta d'aquest usuari dins de /home/ftpuser/.
 
 Haurem crear la carpeta / home / ftpuser / prèviament. Les carpetes de cada usuari individual es crearan automàticament si tenim la directiva **CreateHomedir a yes.**
 
-_\# Creem la carpeta per als usuaris virtuals:_  
+_# Creem la carpeta per als usuaris virtuals:_\
 mkdir /home/ftpuser
 
-_\# Li posem com a usuari i propietari ftpuser.ftpgroup:_  
+_# Li posem com a usuari i propietari ftpuser.ftpgroup:_\
 chown ftpuser.ftpgroup /home/ftpuser
 
-_\# Donem permisos perquè pure-ftpd pugui escriure en aquest directori i crear els home :_  
+_# Donem permisos perquè pure-ftpd pugui escriure en aquest directori i crear els home :_\
 chmod 777 /home/ftpuser
 
 La gestió dels usuaris es realitza amb la comanda **pure-pw.**Aquest ens permet crear, modificar, esborrar i mostrar els usuaris virtuals. També es pot fer el mateix editant directament el fitxer **/etc/pure-ftpd/pureftpd.passwd,**però es recomana l'ús de la comanda per la seva major senzillesa.
 
 Per veure tots els paràmetres disponibles, executarem:
 
-pure-pw --help  
+pure-pw --help\
 
 
 Per exemple podríem crear un usuari "adolfo" el directori fos / home / adolfo:
 
-_\# -u: per indicar el uid d'aquest usuari_  
-_\# -d: indica la carpeta home d'aquest usuari_  
+_# -u: per indicar el uid d'aquest usuari_\
+_# -d: indica la carpeta home d'aquest usuari_\
 pure-pw useradd adolfo -u ftpuser -d /home/ftpuser/adolfo
 
-_\# Haurem d'escriure el password per a aquest usuari adolfo 2 cops._
+_# Haurem d'escriure el password per a aquest usuari adolfo 2 cops._
 
-_\# Amb el paràmetre -d l'usuari adolfo estarà chrooted._  
-_\# Si volem que tingui accés a tot el sistema escriurem -D en lloc de -d._
+_# Amb el paràmetre -d l'usuari adolfo estarà chrooted._\
+_# Si volem que tingui accés a tot el sistema escriurem -D en lloc de -d._
 
 Recordar-vos que no cal crear el directori d'aquest usuari si tenim la directiva **CreateHomeDir** a **yes** en la configuració de pure-ftpd.
 
 Cal recordar que després d'haver realitzat qualsevol canvi relatiu als usuaris, haurem **d'aplicar ells canvis a la base de** dades.Per a això executarem:
 
-pure-pw mkdb  
+pure-pw mkdb\
 
 
 #### **Modificació d'usuaris virtuals**
@@ -465,44 +465,44 @@ Un cop tenim els usuaris virtuals creats, podrem editar la seva informació. Per
 
 La comanda pure-pw usermod funciona com pure-pw useradd, excepte que modifica la informació existent d'un compte en lloc de crear una altra nueva.Por exemple, volem afegir-li a adolfo 1 quota. Adolfo va tenir limitat a 30 fitxers i 10 megabytes de capacitat.
 
-_\# -n: nombre màxim de fitxers_  
-_\# N: espai màxim en MBytes_  
-pure-pw usermod adolfo -n 30 -N 10  
+_# -n: nombre màxim de fitxers_\
+_# N: espai màxim en MBytes_\
+pure-pw usermod adolfo -n 30 -N 10\
 
 
 #### **resetejat d'atributs**
 
-To disable file quotes, utilitzeu pure-pw usermod &lt;user&gt; -n ''  
-To disable size quotes, utilitzeu pure-pw usermod &lt;user&gt; -N ''  
-To disable ràtios, utilitzeu pure-pw usermod &lt;user&gt; -q '' -Q ''  
-To disable download bandwidth throttling, utilitzeu pure-pw usermod &lt;user&gt; -t ''  
-To disable upload bandwidth throttling, utilitzeu pure-pw usermod &lt;user&gt; T ''  
-To disable IP filtering, utilitzeu pure-pw usermod &lt;user&gt; &lt;-i, -I, -r or -R&gt; ''  
-To disable time restrictions, utilitzeu pure-pw usermod &lt;user&gt; -z ''  
-To disable the number of concurrent sessions, utilitzeu pure-pw usermod &lt;user&gt; -i''  
+To disable file quotes, utilitzeu pure-pw usermod \<user> -n ''\
+To disable size quotes, utilitzeu pure-pw usermod \<user> -N ''\
+To disable ràtios, utilitzeu pure-pw usermod \<user> -q '' -Q ''\
+To disable download bandwidth throttling, utilitzeu pure-pw usermod \<user> -t ''\
+To disable upload bandwidth throttling, utilitzeu pure-pw usermod \<user> T ''\
+To disable IP filtering, utilitzeu pure-pw usermod \<user> <-i, -I, -r or -R> ''\
+To disable time restrictions, utilitzeu pure-pw usermod \<user> -z ''\
+To disable the number of concurrent sessions, utilitzeu pure-pw usermod \<user> -i''\
 
 
 #### **Esborrat d'usuaris virtuals**
 
 Per esborrar un usuari haurem d'executar:
 
-pure-pw userdel &lt;login&gt; \[-f&lt;passwdfile&gt;\] \[-m\]_\# Si volem esborrar adolfo:_  
+pure-pw userdel \<login> \[-f\<passwdfile>] \[-m]_# Si volem esborrar adolfo:_\
 pure-pw userdel adolfo
 
-_\# Atenció: el seu directori personal no s'esborrarà._  
-_\# Haurem de esborrar-a mà:_  
+_# Atenció: el seu directori personal no s'esborrarà._\
+_# Haurem de esborrar-a mà:_\
 rm -rf / home / ftpusuarios / adolfo
 
 #### **Modificació de contrasenyes**
 
 Per modificar la contrasenya d'un usuari:
 
-pure-pw passwd &lt;login&gt; \[-f&lt;passwdfile&gt;\] \[-m\]
+pure-pw passwd \<login> \[-f\<passwdfile>] \[-m]
 
-_\# Per exemple per adolfo:_  
+_# Per exemple per adolfo:_\
 pure-pw passwd adolfo
 
-_\# Recordeu que per aplicar canvis farem:_  
+_# Recordeu que per aplicar canvis farem:_\
 pure-pw mkdb
 
 #### **Consulta d'informació d'usuari**
@@ -511,24 +511,23 @@ Per consultar la informació d'un usuari ho farem amb:
 
 pure-pw show login
 
-_\# Per exemple per adolfo:_  
+_# Per exemple per adolfo:_\
 pure-pw show adolfo
 
 #### **Més paràmetres sobre la gestió d'usuaris**
 
 Es recomana consultar l'ajuda en la línia de comandes amb:
 
-man pure-pw  
+man pure-pw\
 
 
 **gestió del servei**
 
 per reiniciar el servei pure-ftpd:
 
-service pure-ftpd restart  
+service pure-ftpd restart\
 
 
 per veure la llista d'usuaris que estan connectats al FTP:
 
 pure-ftpwho
-
