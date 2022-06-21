@@ -23,5 +23,14 @@ Podem dir als contenidors tot el que necessita per treballar, totes les dependè
 
 ****
 
-****
+Docker té quatre eines principals que ofereix per dur a terme les tasques:
+
+* Docker Engine
+* Docker compose
+* Docker Machine
+* Docker Swarm
+
+Docker Engine
+
+El Docker Engine és la "potent tecnologia de contenidors de codi obert de Docker combinada amb un flux de treball per crear i contenir  les vostres aplicacions". — Docker, Sobre Docker Engine És el que crea i executa imatges Docker des d'un únic Dockerfile o -compose.yml. Quan algú utilitza una ordre docker a través de la CLI de Docker, parla amb aquest motor per fer el que cal fer.
 
