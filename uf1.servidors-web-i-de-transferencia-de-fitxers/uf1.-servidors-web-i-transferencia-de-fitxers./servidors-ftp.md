@@ -73,15 +73,17 @@ __
 
 Al servidor pureftpd podrem configurar els modes d'autenticació disponibles per accedir-hi. Una cosa que hem de fer és configurar si volem fer servir els **usuaris virtuals** (usuaris del servei però no del sistema)**,** i per a això hem de indicar-li que utilitzi en autenticació el fitxer de base de dades que conté aquests usuaris.
 
-_# Atenció: aquesta configuració la farem quan anem a treballar amb usuaris virtuals._\
-_# Si no hem creat usuaris virtuals la base de dades no existirà i donarà error a l'arrencar pureftpd._
-
-_# Accedim al directori d'autenticació:_\
+```shell
+# Atenció: aquesta configuració la farem quan anem a treballar amb usuaris virtuals.
+# Si no hem creat usuaris virtuals la base de dades no existirà i donarà error a l'arrencar pureftpd.
+# Accedim al directori d'autenticació:
 cd /etc/pure-ftpd/auth
-
-_# Creem un enllaç simbòlic a la informació d'on es troba la base de dades._\
-_# En indicar 50 ... estem indicant la prioritat en l'autenticació._\
+# Creem un enllaç simbòlic a la informació d'on es troba la base de dades.
+# En indicar 50 ... estem indicant la prioritat en l'autenticació.
 ln -s ../conf/PureDB 50pure
+```
+
+__
 
 #### **Altres directives**
 
@@ -89,54 +91,55 @@ Directives de configuració més importants que utilitzarem.
 
 Les directives de configuració, són fitxers que es troben al directori:
 
-/etc/pure-ftpd/conf\
-
+`/etc/pure-ftpd/conf`\
+``
 
 Si alguna de les directives esmentades a continuació no existeix, hi haurem de crear un fitxer amb el nom d'aquesta directiva i emmagatzemar dins d'ell, els paràmetres corresponents a aquesta directiva.
 
 Una de les característiques que volem, és que els usuaris no puguin sortir del seu directori home:
 
 **ChrootEveryone yes**\
-****\
-****_# Si aquesta directiva no està creada la crearem amb:_\
+****
+
+```bash
+# Si aquesta directiva no està creada la crearem amb:
 nano /etc/pure-ftpd/conf/ChrootEveryone
-
-_# I com a contingut del fitxer escriurem :_\
+# I com a contingut del fitxer escriurem :
 yes
-
-_# O tambiém podem fer el mateix amb les instrucció:_\
+# O tambiém podem fer el mateix amb les instrucció:
 echo "yes">/etc/pure-ftpd/conf/ChrootEveryone
+```
 
 Una altra de les característiques que ha de posseir el servidor ftp és que disposi d'una zona de descàrrega pública (usuaris anonymous). Per a això hem d'acceptar connexions anònimes, amb el que hi ha d'haver la següent línia: **NoAnonymous no**
 
-echo "no"> /etc/pure-ftpd/conf/NoAnonymous\
-
+`echo "no"> /etc/pure-ftpd/conf/NoAnonymous`\
+``
 
 Si volem que només permeti l'accés a usuaris anònims haurem de posar també la directiva:
 
-echo "yes"> / etc / pure-ftpd / conf / AnonymousOnly\
-
+`echo "yes"> / etc / pure-ftpd / conf / AnonymousOnly`\
+``
 
 Si volem tenir **usuaris virtuals** (seran usuaris registrats, però que no tenen compte de shell en el sistema), hem d'assegurar que la línia a continuació existeix i no està comentada.
 
 Aquesta línia indica la localització del fitxer d'usuaris PureDB:
 
-more /etc/pure-ftpd/conf/PureDB
+`more /etc/pure-ftpd/conf/PureDB`
 
 _# Mostrarà la ruta de la base de dades d'usuaris virtuals:_\
-/etc/pure-ftpd/pureftpd.pdb
+`/etc/pure-ftpd/pureftpd.pdb`
 
 Per evitar que algun usuari per distracció (o maliciosament) ens pugui omplir el servidor de fitxers, activarem uns **límits** màxims:
 
 per exemple podríem posar una Quota límit de 400 fitxers i 50 MB:
 
-echo "400 50">/etc/pure-ftpd /conf/Quota\
-
+`echo "400 50">/etc/pure-ftpd /conf/Quota`\
+``
 
 Si volem que automàticament es creuen els directoris home dels usuaris, la primera vegada que es loguean ho farem amb:
 
-echo "yes"> /etc/pure-ftpd/conf/CreateHomeDir\
-
+`echo "yes"> /etc/pure-ftpd/conf/CreateHomeDir`\
+``
 
 Per posar màscares per defecte s'utilitza la directiva **umask.**En aquesta directiva s'indica mitjançant dos nombres **separats per un espai** els permisos per a fitxers i per directoris.
 
@@ -144,13 +147,14 @@ Per calcular-es resta a **777-umask = permisos finals**
 
 Per exemple:
 
-_# 220 -> umask per a fitxers_\
-_# 444 -> umask per directoris_\
+```bash
+# 220 -> umask per a fitxers
+# 444 -> umask per directoris
 echo "220.444"> /etc/pure-ftpd /conf /umask
-
-_# Ens dóna per defecte:_\
-Fitxers: -r-xr-xrwx\
+# Ens dóna per defecte:
+Fitxers: -r-xr-xrwx
 Directoris: d-wx-wx-wx
+```
 
 **Més Directives de configuració**
 
@@ -178,30 +182,30 @@ Quan vam crear un usuari virtual haurem de associar-li un uid: identificador d'u
 Per crear aquest compte ho farem de la següent manera:
 
 _# Primer crearem un grup ftpgroup per als usuaris FTP:_\
-groupadd ftpgroup
+`groupadd ftpgroup`
 
 _# a continuació vam crear el compte ftpuser:_\
-useradd -g ftpgroup -d /dev/null -s /bin/nologin ftpuser
+`useradd -g ftpgroup -d /dev/null -s /bin/nologin ftpuser`
 
-a partir d'ara quan afegim usuaris al pure-ftpd, li podrem indicar que l'usuari del sistema associat és ftpuser, i dir-li que faci la carpeta d'aquest usuari dins de /home/ftpuser/.
+a partir d'ara quan afegim usuaris al pure-ftpd, li podrem indicar que l'usuari del sistema associat és ftpuser, i dir-li que faci la carpeta d'aquest usuari dins de `/home/ftpuser/.`
 
 Haurem crear la carpeta / home / ftpuser / prèviament. Les carpetes de cada usuari individual es crearan automàticament si tenim la directiva **CreateHomedir a yes.**
 
 _# Creem la carpeta per als usuaris virtuals:_\
-mkdir /home/ftpuser
+`mkdir /home/ftpuser`
 
 _# Li posem com a usuari i propietari ftpuser.ftpgroup:_\
 chown ftpuser.ftpgroup /home/ftpuser
 
 _# Donem permisos perquè pure-ftpd pugui escriure en aquest directori i crear els home :_\
-chmod 777 /home/ftpuser
+`chmod 777 /home/ftpuser`
 
 La gestió dels usuaris es realitza amb la comanda **pure-pw.**Aquest ens permet crear, modificar, esborrar i mostrar els usuaris virtuals. També es pot fer el mateix editant directament el fitxer **/etc/pure-ftpd/pureftpd.passwd,**però es recomana l'ús de la comanda per la seva major senzillesa.
 
 Per veure tots els paràmetres disponibles, executarem:
 
-pure-pw --help\
-
+`pure-pw --help`\
+``
 
 Per exemple podríem crear un usuari "adolfo" el directori fos / home / adolfo:
 
