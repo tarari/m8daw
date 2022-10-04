@@ -117,7 +117,7 @@ Una altra de les característiques que ha de posseir el servidor ftp és que dis
 
 Si volem que només permeti l'accés a usuaris anònims haurem de posar també la directiva:
 
-`echo "yes"> / etc / pure-ftpd / conf / AnonymousOnly`\
+`echo "yes"> /etc/pure-ftpd/conf/AnonymousOnly`\
 ``
 
 Si volem tenir **usuaris virtuals** (seran usuaris registrats, però que no tenen compte de shell en el sistema), hem d'assegurar que la línia a continuació existeix i no està comentada.
@@ -133,7 +133,7 @@ Per evitar que algun usuari per distracció (o maliciosament) ens pugui omplir e
 
 per exemple podríem posar una Quota límit de 400 fitxers i 50 MB:
 
-`echo "400 50">/etc/pure-ftpd /conf/Quota`\
+`echo "400 50">/etc/pure-ftpd/conf/Quota`\
 ``
 
 Si volem que automàticament es creuen els directoris home dels usuaris, la primera vegada que es loguean ho farem amb:
@@ -150,7 +150,7 @@ Per exemple:
 ```bash
 # 220 -> umask per a fitxers
 # 444 -> umask per directoris
-echo "220.444"> /etc/pure-ftpd /conf /umask
+echo "220.444"> /etc/pure-ftpd/conf/umask
 # Ens dóna per defecte:
 Fitxers: -r-xr-xrwx
 Directoris: d-wx-wx-wx
@@ -222,7 +222,7 @@ Recordar-vos que no cal crear el directori d'aquest usuari si tenim la directiva
 
 Cal recordar que després d'haver realitzat qualsevol canvi relatiu als usuaris, haurem **d'aplicar ells canvis a la base de** dades.Per a això executarem:
 
-pure-pw mkdb\
+`pure-pw mkdb`\
 
 
 #### **Modificació d'usuaris virtuals**
@@ -233,7 +233,7 @@ La comanda pure-pw usermod funciona com pure-pw useradd, excepte que modifica la
 
 _# -n: nombre màxim de fitxers_\
 _# N: espai màxim en MBytes_\
-pure-pw usermod adolfo -n 30 -N 10\
+`pure-pw usermod adolfo -n 30 -N 10`\
 
 
 #### **resetejat d'atributs**
@@ -252,48 +252,50 @@ To disable the number of concurrent sessions, utilitzeu pure-pw usermod \<user> 
 
 Per esborrar un usuari haurem d'executar:
 
-pure-pw userdel \<login> \[-f\<passwdfile>] \[-m]_# Si volem esborrar adolfo:_\
-pure-pw userdel adolfo
+`pure-pw userdel <login> [-f<passwdfile>] [-m]`_`# Si volem esborrar adolfo:`_\
+`pure-pw userdel adolfo`
 
-_# Atenció: el seu directori personal no s'esborrarà._\
-_# Haurem de esborrar-a mà:_\
-rm -rf / home / ftpusuarios / adolfo
+_`# Atenció: el seu directori personal no s'esborrarà.`_\
+``_`# Haurem de esborrar-a mà:`_\
+`rm -rf / home / ftpusuarios / adolfo`
 
 #### **Modificació de contrasenyes**
 
 Per modificar la contrasenya d'un usuari:
 
-pure-pw passwd \<login> \[-f\<passwdfile>] \[-m]
+`pure-pw passwd <login> [-f<passwdfile>] [-m]`
 
 _# Per exemple per adolfo:_\
-pure-pw passwd adolfo
+`pure-pw passwd adolfo`
 
 _# Recordeu que per aplicar canvis farem:_\
-pure-pw mkdb
+`pure-pw mkdb`
 
 #### **Consulta d'informació d'usuari**
 
 Per consultar la informació d'un usuari ho farem amb:
 
-pure-pw show login
+`pure-pw show login`
 
 _# Per exemple per adolfo:_\
-pure-pw show adolfo
+`pure-pw show adolfo`
 
 #### **Més paràmetres sobre la gestió d'usuaris**
 
 Es recomana consultar l'ajuda en la línia de comandes amb:
 
-man pure-pw\
-
+`man pure-pw`\
+``
 
 **gestió del servei**
 
 per reiniciar el servei pure-ftpd:
 
-service pure-ftpd restart\
+`service pure-ftpd restart`
 
+`systemctl restart pure-ftpd`\
+``
 
 per veure la llista d'usuaris que estan connectats al FTP:
 
-pure-ftpwho
+`pure-ftpwho`
