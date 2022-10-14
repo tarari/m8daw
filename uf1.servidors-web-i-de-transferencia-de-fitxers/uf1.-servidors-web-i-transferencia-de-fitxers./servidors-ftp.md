@@ -171,9 +171,9 @@ Això vol dir que fàcilment podem crear comptes de FTP, sense barrejar-les amb 
 
 Addicionalment, els usuaris virtuals poden disposar de quotes individuals, ràtios, ample de banda, etc. Els comptes del sistema no permeten fer això.
 
-Podem tancar els usuaris virtuals en la seva gàbia : chroot, per fer-ho editem el fitxer **/etc/default/pure-ftpd-common**
+És condició indispensable que estigui activada la directiva:
 
-**VIRTUALCHROOT= true**
+`NoAnonymous yes`
 
 #### **Creació d'usuaris virtuals**
 
