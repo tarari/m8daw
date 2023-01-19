@@ -2,6 +2,7 @@
 
 * [Introducció](README.md)
 * [UF2. Servidors d'aplicacions](uf2.-servidors-daplicacions.md)
+* [Servidors nginx](servidors-nginx.md)
 
 ## UF1.Servidors web i de transferència de fitxers
 
