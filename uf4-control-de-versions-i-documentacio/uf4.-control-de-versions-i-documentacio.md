@@ -32,11 +32,11 @@ Hi ha un únic repositori o punt central que guarda el codi i tothom sincronitza
 
 ![ Flux de treball centralitzat ](https://aulasoftwarelibre.github.io/taller-de-git/images/flujo-centralizado.png)
 
-#### Flux de treball de l'Gestor-de-Integracions  <a href="#flujo-de-trabajo-del-gestor-de-integraciones" id="flujo-de-trabajo-del-gestor-de-integraciones"></a>
+#### Flux de treball del Gestor deIntegracions <a href="#flujo-de-trabajo-del-gestor-de-integraciones" id="flujo-de-trabajo-del-gestor-de-integraciones"></a>
 
-A l'permetre múltiples repositoris remots, en Git és possible tenir un flux de treball on cada desenvolupador tingui accés d'escriptura al seu propi repositori públic i accés de lectura als repositoris de tots els altres. Habitualment, aquest escenari sol incloure un repositori canònic, representant "oficial" de el projecte.
+Al permetre múltiples repositoris remots, en Git és possible tenir un flux de treball on cada desenvolupador tingui accés d'escriptura al seu propi repositori públic i accés de lectura als repositoris de tots els altres. Habitualment, aquest escenari sol incloure un repositori canònic, representant "**oficial**" de el projecte.
 
-![ Flux de treball de l'Gestor-de-Integracions ](https://aulasoftwarelibre.github.io/taller-de-git/images/flujo-integracion.png)
+![ Flux de treball del Gestor-de-Integracions ](https://aulasoftwarelibre.github.io/taller-de-git/images/flujo-integracion.png)
 
 Informació
 
@@ -64,7 +64,7 @@ Segueix les instruccions per descarregar git en funció del teu sistema operatiu
 
 * Linux: Segueix [aquest enllaç](https://git-scm.com/download/linux) i executa a la terminal les ordres corresponents al teu distro.
 * OSX: Segueix [aquest enllaç](https://git-scm.com/download/mac) i segueix les instruccions d'instal·lació.
-* Windows: Segueix [aquest enllaç](https://gitforwindows.org) i segueix les instruccions d'instal·lació.
+* Windows: Segueix [aquest enllaç](https://gitforwindows.org/) i segueix les instruccions d'instal·lació.
 
 Un cop instal·lat, executa les següents ordres a la terminal:
 
