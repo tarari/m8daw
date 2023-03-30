@@ -10,8 +10,8 @@ description: >-
 ### Reconeixement de l'autor
 
 {% hint style="info" %}
-![](broken-reference) \
-&#x20;![](.gitbook/assets/by-nc.eu.png) \
+<img src="broken-reference" alt="" data-size="line"> \
+&#x20;<img src=".gitbook/assets/by-nc.eu.png" alt="" data-size="line"> \
 **Desplegament d'aplicacions web** by [Toni Jiménez](https://t-jimenez.gitbook.io/desplegament-d-aplicacions-web/) is licensed under a [Creative Commons Reconocimiento-NoComercial 4.0 Internacional License](http://creativecommons.org/licenses/by-nc/4.0/).
 
 **Toni Jiménez** [**\<t.jimenez@escolesnuria.cat**](mailto:t.jimenez@escolesnuria.cat)**>**

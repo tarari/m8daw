@@ -101,7 +101,7 @@ Tot i que les tractarem més endavant i no són estrictament necessàries per a 
 
 Per representar l'evolució d'un repositori utilitzarem un gràfic en què el temps es representa com una línia que apunta cap endavant, el moment actual com> i l'inici de l'repositori com O:
 
-```
+```sh
 init  ara
 REPO:  O------>
 ```
@@ -112,7 +112,7 @@ Per consultar els fitxers modificats des de l'última actualització de l'reposi
 
 Aquesta ordre ens mostra un text similar a el següent:
 
-```
+```sh
 On branch master
 
 No commits yet
@@ -141,16 +141,16 @@ A l'igual que git no actualitza fitxers si no s'afegeixen manualment, els fitxer
 L'ordre `git mv`,a l'igual que l'ordre POSIX **mv**, ens permet canviar el nom i desplaçar fitxers al llarg de l'repositori i que aquests moviments queden registrats en ell. Igualment, `git rm`,a l'igual que l'ordre POSIX **rm**, ens permet eliminar fitxers de l'arxiu.
 
 {% hint style="info" %}
-ATENCIÓ !: Aquestes ordres tenen efectes tangibles sobre els fitxers de l'arxiu. Esborrar-los o desplaçar-los amb aquestes ordres esborrarà o desplaçarà els fitxers de directori.
+**ATENCIÓ**!: Aquestes ordres tenen efectes tangibles sobre els fitxers de l'arxiu. Esborrar-los o desplaçar-los amb aquestes ordres esborrarà o desplaçarà els fitxers de directori.
 {% endhint %}
 
 #### **git restore**
 
-A l'afegir fitxers per a la següent actualització del repositori passen a estar en estat **staged** (escenificat). Això vol dir que, fins que no es faci efectiva l'actualització, els canvis sobre aquests fitxers estan en consideració per a ella.
+A l'afegir fitxers per a la següent actualització del repositori passen a estar en estat **staged** (escenificat o preparatds per commit). Això vol dir que, fins que no es faci efectiva l'actualització, els canvis sobre aquests fitxers estan en consideració per a ella.
 
 Si decidíssim que no volem afegir alguns dels fitxers a la següent actualització, podem usar l'ordre git restore --staged \<fitxers> per no incloure'ls però que conservin els canvis:
 
-```
+```sh
 git status
 # On branch master
 # Changes to be committed:
@@ -187,9 +187,9 @@ git commit -m "[META] Actualitzat Makefile i .gitignore" -m "Afegit llegibilitat
 
 Un cop realitzat el commit, el que fins ara hem anomenat actualització per no dificultar la lectura, els seus canvis es guarden en el registre de commits, que veurem més endavant.
 
-Afegit el commit A, el repositori quedaria així:
+Afegit el **commit A**, el repositori quedaria així:
 
-```
+```sh
        init   ara
 REPO:  O---A--->
 ```
@@ -197,10 +197,10 @@ REPO:  O---A--->
 &#x20; ****  \
 ****
 
-**L'últim commit realitzat( A en aquest cas) rep el nom de HEAD.**
+L'últim commit realitzat( A en aquest cas) rep el nom de **HEAD.**
 
 {% hint style="info" %}
-**ATENCIÓ !: Desfer aquests canvis és molt difícil, molt més treballant amb un repositori remot (veure següent apartat). Tria molt bé quins canvis vols deixar reflectits en els  commits.**
+**ATENCIÓ !:** Desfer aquests canvis és molt difícil, molt més treballant amb un repositori remot (veure següent apartat). Tria molt bé quins canvis vols deixar reflectits en els  commits.
 {% endhint %}
 
 ****
@@ -211,7 +211,7 @@ Segons anem fent commits, aquests es van guardant en el fitxer .git per registra
 
 Si executem `git log` accedim una interfície en la qual podem llegir els commits realitzats fins al moment:
 
-```
+```sh
 commit 9d0431253c006222eaae2412c5d4ae065dc7449a
 Author: Usuari <usuari@correu.com>
 Date:   Wed Oct 9 13:06:49 2019 +0200
@@ -259,7 +259,7 @@ Aquests canvis vénen fitxer per fitxer en verd si representen una addició i en
 
 Fins ara hem estat treballant amb un repositori local, però el potencial d'git s'aprofita completament a l'treballar amb un repositori remot.
 
-Per associar nostre local a un remot utilitzem l'ordre **`git remote add origin <url>`**, sent origin l'àlies que li donem a l'remot per convenció. És imperatiu que el remot estigui inicialitzat abans d'intentar realitzar aquesta acció, ja que no funcionarà d'una altra manera.
+Per associar nostre local a un remot utilitzem l'ordre **`git remote add origin <url>`**, sent **origin** l'àlies que li donem al remot per convenció. És imperatiu que el remot estigui inicialitzat abans d'intentar realitzar aquesta acció, ja que no funcionarà d'una altra manera.
 
 Al  crear un repositori en GitHub, que no és més que crear un allotjament per a un remot, se'ns indica que, per enllaçar nostre local a l'remot, hem de fer servir **git remote add** seguit de la url de l'remot que acabem de crear.
 
@@ -271,7 +271,7 @@ Per enviar una actualització a l'remot fem servir l'ordre **`git push <remot><b
 
 Per exemple, suposem que hem afegit un remot però encara no hem fet push des del local als commits A, B i C.L'estat de tots dos seria el següent:
 
-```
+```sh
         init           ara
 REMOT:  O--------------->
 
