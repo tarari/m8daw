@@ -20,7 +20,7 @@ Git té tres estats principals en què es poden trobar els teus arxius: confirma
 
 Això ens porta a les tres seccions principals d'un projecte de Git: directori de Git (Git directory), el directori de treball (working directory), i l'àrea de preparació (staging area).
 
-![](../.gitbook/assets/git-flujo.png)
+![Fluxe de treball amb git](../.gitbook/assets/git-flujo.png)
 
 ### Fluxos de treball distribuïts amb git  <a href="#flujos-de-trabajo-distribuidos-con-git" id="flujos-de-trabajo-distribuidos-con-git"></a>
 
@@ -34,33 +34,35 @@ Hi ha un únic repositori o punt central que guarda el codi i tothom sincronitza
 
 #### Flux de treball del Gestor deIntegracions <a href="#flujo-de-trabajo-del-gestor-de-integraciones" id="flujo-de-trabajo-del-gestor-de-integraciones"></a>
 
-Al permetre múltiples repositoris remots, en Git és possible tenir un flux de treball on cada desenvolupador tingui accés d'escriptura al seu propi repositori públic i accés de lectura als repositoris de tots els altres. Habitualment, aquest escenari sol incloure un repositori canònic, representant "**oficial**" de el projecte.
+En permetre múltiples repositoris remots, en Git és possible tenir un flux de treball on cada desenvolupador tingui accés d'escriptura al seu propi repositori públic i accés de lectura als repositoris de tots els altres. Habitualment, aquest escenari sol incloure un repositori canònic, representant "**oficial**" de el projecte.
 
 ![ Flux de treball del Gestor-de-Integracions ](https://aulasoftwarelibre.github.io/taller-de-git/images/flujo-integracion.png)
 
-Informació
+{% hint style="info" %}
+Aquest model es va posar molt de moda arran de  GitHub, que es veurà més endavant.
+{% endhint %}
 
-Aquest model es va posar molt de moda arran de la forja GitHub que es veurà més endavant.
+
 
 #### Flux de treball amb Dictador i tinents  <a href="#flujo-de-trabajo-con-dictador-y-tenientes" id="flujo-de-trabajo-con-dictador-y-tenientes"></a>
 
-És una variant de el flux de treball amb múltiples repositoris. S'utilitza generalment en projectes molt grans, amb centenars de col·laboradors. Un exemple molt conegut és el de el nucli de Linux. Uns gestors d'integració s'encarreguen de parts concretes de l'repositori; i s'anomenen tinents. Tots els tinents rendeixen comptes a un gestor d'integració; conegut com el dictador benevolent. El repositori de l'dictador benevolent és el repositori de referència, de què recuperen (**pull**) tots els col·laboradors.
+És una variant de el flux de treball amb múltiples repositoris. S'utilitza generalment en projectes molt grans, amb centenars de col·laboradors. Un exemple molt conegut és el de el **nucli de Linux**. Uns gestors d'integració s'encarreguen de parts concretes de l'repositori; i s'anomenen tinents. Tots els tinents rendeixen comptes a un gestor d'integració; conegut com el dictador benevolent. El repositori del  dictador benevolent és el repositori de **referència**, del què recuperen (**pull**) tots els col·laboradors.
 
 ![ Flux de treball amb Dictador i tinents ](https://aulasoftwarelibre.github.io/taller-de-git/images/flujo-dictador.png)
 
 ## Aspectes bàsics de Git  <a href="#aspectos-basicos-de-git" id="aspectos-basicos-de-git"></a>
 
-### **GIT NO ÉS GitHub**
+### **GiT NO ÉS GitHub**
 
-Git és un gestor de versions utilitzat primàriament des de la terminal pensat per controlar el progrés d'un projecte programari entre diversos components d'un equip i facilitar el seu desenvolupament.
+Git és un gestor de versions utilitzat primàriament des de la **terminal** pensat per controlar el progrés d'un projecte programari entre diversos components d'un equip i facilitar el seu desenvolupament.
 
-GitHub és una plataforma en línia que permet gestionar dipòsits de forma visual i interactuar amb els repositoris d'altres usuaris, que comparteixen el seu treball públicament.
+GitHub és una **plataforma en línia** que permet gestionar dipòsits de forma visual i interactuar amb els repositoris d'altres usuaris, que comparteixen el seu treball públicament.
 
 A part de GitHub, hi ha molts altres clients de Git, com GitLab, GitKraken, OpenHub i altres dipòsits creats individualment, com el AUR (Arch User Repository).&#x20;
 
 ### **CONFIGURACIÓ DE GIT**
 
-Segueix les instruccions per descarregar git en funció del teu sistema operatiu:
+Atenció, segueix les instruccions per descarregar git en funció del teu sistema operatiu:
 
 * Linux: Segueix [aquest enllaç](https://git-scm.com/download/linux) i executa a la terminal les ordres corresponents al teu distro.
 * OSX: Segueix [aquest enllaç](https://git-scm.com/download/mac) i segueix les instruccions d'instal·lació.
@@ -68,7 +70,7 @@ Segueix les instruccions per descarregar git en funció del teu sistema operatiu
 
 Un cop instal·lat, executa les següents ordres a la terminal:
 
-```
+```sh
 # Introdueix un nom d'usuari
 git config --global user.name "Usuari"
 # Introdueix un email d'usuari
@@ -77,11 +79,15 @@ git config --global user.email "usuari@email.com"
 git config --global color.ui auto
 ```
 
-el teu nom i correu d'usuari són els que t'identificaran a l'actualitzar el repositori. No has de registrar-te enlloc, només cal que introdueixis els que t'agradin. Tot i que no han de ser obligatòriament els de GitHub o la plataforma que utilitzis, **resulta més fàcil identificar-te si fas servir les mateixes credencials**.
+{% hint style="info" %}
+Global, indica configuració vàlida per a l'usuari de sistema actual. Al directori personal es desa dins **.gitconfig**
+{% endhint %}
+
+El teu nom i correu d'usuari són els que t'identificaran a l'actualitzar el repositori. No has de registrar-te enlloc, només cal que introdueixis els que t'agradin. Però, tot i que no han de ser obligatòriament els de GitHub o la plataforma que utilitzis, **resulta més fàcil identificar-te si fas servir les mateixes credencials**.
 
 ### **ORDRES GIT**
 
-**Ens ajudarem del següent cheat-sheet:**
+**Ens ajudarem del següent cheat-sheet, si vols t'ho pots imprimir.**
 
 ****[**http://ndpsoftware.com/git-cheatsheet.html**](http://ndpsoftware.com/git-cheatsheet.html)****
 
