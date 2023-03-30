@@ -14,7 +14,7 @@ Git és un sistema de control de versions distribuït que es diferencia de la re
 
 ![Model de dades de Git](https://aulasoftwarelibre.github.io/taller-de-git/images/distribuido-git.png)
 
-### Els tres estats  <a href="#los-tres-estados" id="los-tres-estados"></a>
+### Els tres estats  i el fantasma <a href="#los-tres-estados" id="los-tres-estados"></a>
 
 Git té tres estats principals en què es poden trobar els teus arxius: confirmat (Committed), modificat (modified), i preparat (staged). Confirmat vol dir que les dades estan emmagatzemades de manera segura en la teva base de dades local. Modificat vol dir que has modificat l'arxiu però encara no ho has confirmat a la teva base de dades. Preparat vol dir que has marcat un arxiu modificat en la seva versió actual perquè vagi en la teva propera confirmació.
 
@@ -282,7 +282,7 @@ LOCAL:  O---A---B---C--->
 
 Si fem push, l'estat canviaria a el següent:
 
-```
+```sh
         init           ara
 REMOT:  O---A---B---C--->
 
@@ -294,7 +294,7 @@ LOCAL:  O---A---B---C--->
 Amb aquest gràfic podem apreciar dues coses molt importants:
 
 * el repositori no emmagatzema el moment en què es fa push, doncs la dada rellevant en aquest cas seria la data i hora de l'últim commit.
-* El remot no actualitza els commits a la data i hora de l'push, sinó que els emmagatzema de la mateixa manera que al local, ja que no és més que una còpia remota de l'repositori.
+* El remot no actualitza els commits a la data i hora del push, sinó que els emmagatzema de la mateixa manera que al local, ja que no és més que una còpia remota del repositori.
 
 #### **git pull**
 
@@ -302,9 +302,9 @@ De la mateixa manera que podem empènyer els canvis a l'remot, podem tirar d'ell
 
 Si volem actualitzar canvis del remot que s'han fet a partir d'un altre local, utilitzem **git pull** per sincronitzar el nostre local amb la versió més recent de tot el remot.
 
-Per exemple, vegem el gràfic anterior considerant un nou local en una altra màquina. Per això, anomenarem local1 al que abans anomenem LOCAL1 i local2 a el nou local:
+Per exemple, vegem el gràfic anterior considerant un nou local en una altra màquina. Per això, anomenarem **local1** al que abans anomenem LOCAL1 i **local2** a el nou local:
 
-```
+```sh
         init               ara
 REMOT :  O---A---B---C---D--->
 
@@ -318,7 +318,7 @@ LOCAL2:  O---A---B---C---D--->
 
 Com podem veure, **local2 ha fet el commit D i push a màster**, de manera que el remot està actualitzat amb el seu local, però no amb el de local1.Per esmenar això, **local1 fa pull** abans de seure a treballar i l'estat dels dipòsits passaria a ser el següent:
 
-```
+```sh
         init               ara
 REMOTO:  O---A---B---C---D--->
 
@@ -339,7 +339,7 @@ Per crear una còpia local d'un remot utilitzem l'ordre **`git clone <url> .git[
 
 #### **git checkout**
 
-Al treballar amb un repositori podem tenir diverses branques de desenvolupament. La utilitat de tenir diferents branques és que es poden dividir les activitats a realitzar sobre els fitxers de forma exclusiva. Per exemple, podem tenir una branca **dev** **per a canvis inestables**.
+Al treballar amb un repositori podem tenir diverses _branques de desenvolupament_. La utilitat de tenir diferents branques és que es poden dividir les activitats a realitzar sobre els fitxers de forma exclusiva. Per exemple, podem tenir una branca **dev** **per a canvis inestables, o simplement per una nova feature**
 
 Per crear una branca fem servir l'ordre **`git checkout -b<branca>`**. Això ens crea la branca que volem i ens canvia automàticament a ella.
 
@@ -354,7 +354,7 @@ REPO:  O---A---B--->
 
 Ara fem `git checkout -b dev` per a crear la branca dev i fem en ella un commit C:
 
-```
+```sh
               init
 REPO: master:  O---A---B----->
                         \   ara
@@ -386,7 +386,7 @@ Per consultar la llista de branques que componen un repositori podem usar l'ordr
 
 Per eliminar una branca fem servir l'ordre **`git branch -d<branca>`**.Prenguem com a exemple el gràfic de l'apartat anterior:
 
-```
+```sh
               init
 REPO: master:  O---A---B----->
                         \    ara
@@ -411,7 +411,7 @@ Per canviar de branca utilitzem **`git switch<branca>`**, sent \<branca> una bra
 
 Per exemple, suposem que tenim el repositori de l'apartat anterior:
 
-```
+```sh
               init
 REPO: master:  O---A---B----->
                         \   ara
@@ -420,7 +420,7 @@ REPO: master:  O---A---B----->
 
 Com es pot veure, ens trobem a la branca dev. Si fem un commit D en dev,  `git switch master` i un commit I,quedaria així:
 
-```
+```sh
                init
 REPO: *master:  O---A---B---------E--->
                          \           ara
@@ -439,7 +439,7 @@ Prenguem com a exemple el següent repositori:
 
 &#x20; **** &#x20;
 
-```
+```sh
                init
 REPO: *master:  O---A---B---D----->
                          \        ara
@@ -481,7 +481,7 @@ REPO: master:  O---A---B---D----->
                   *dev:  C---E--->
 ```
 
-Trobant-nos en la branca dev, executem **`git rebase master`**:
+Trobant-nos en la branca _dev_, executem **`git rebase master`**:
 
 
 
