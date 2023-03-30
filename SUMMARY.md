@@ -20,3 +20,4 @@
 ## UF4 Control de versions i documentació
 
 * [Git i workflow](uf4-control-de-versions-i-documentacio/uf4.-control-de-versions-i-documentacio.md)
+* [Autenticació amb SSH](uf4-control-de-versions-i-documentacio/autenticacio-amb-ssh.md)
