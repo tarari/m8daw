@@ -8,7 +8,9 @@ description: >-
 
 ## Introducció a git <a href="#introduccion-a-git" id="introduccion-a-git"></a>
 
-Git és un sistema de control de versions distribuït que es diferencia de la resta en la manera en què modela les seves dades. La majoria dels altres sistemes emmagatzemen la informació com una llista de canvis en els arxius, mentre que Git modela les seves dades més com un conjunt d'instantànies d'un mini sistema d'arxius.
+**Git** és un sistema de control de versions distribuït que es diferencia de la resta en la manera en què modela les seves dades.&#x20;
+
+La majoria dels altres sistemes emmagatzemen la informació com una llista de canvis en els arxius, mentre que Git modela les seves dades més com un conjunt d'**instantànies** d'un mini sistema d'arxius.
 
 ![Model de dades dels sistemes distribuïts tradicionals](https://aulasoftwarelibre.github.io/taller-de-git/images/distribuido-tradicional.png)
 
@@ -16,9 +18,15 @@ Git és un sistema de control de versions distribuït que es diferencia de la re
 
 ### Els tres estats  i el fantasma <a href="#los-tres-estados" id="los-tres-estados"></a>
 
-Git té tres estats principals en què es poden trobar els teus arxius: confirmat (Committed), modificat (modified), i preparat (staged). Confirmat vol dir que les dades estan emmagatzemades de manera segura en la teva base de dades local. Modificat vol dir que has modificat l'arxiu però encara no ho has confirmat a la teva base de dades. Preparat vol dir que has marcat un arxiu modificat en la seva versió actual perquè vagi en la teva propera confirmació.
+Git té **tres estats principals** en què es poden trobar els teus arxius: confirmat (**Committed**), modificat (**modified**), i preparat (**staged**).&#x20;
 
-Això ens porta a les tres seccions principals d'un projecte de Git: directori de Git (Git directory), el directori de treball (working directory), i l'àrea de preparació (staging area).
+**Confirmat** vol dir que les dades estan emmagatzemades de manera segura en la teva base de dades local (repositori local).&#x20;
+
+Modificat vol dir que has modificat l'arxiu però encara no ho has confirmat a la teva base de dades.&#x20;
+
+Preparat vol dir que has marcat un arxiu modificat en la seva versió actual perquè vagi en la teva propera confirmació(**staging**).
+
+Això ens porta a les tres seccions principals en el sistema de fitxers d'un projecte de Git: directori de Git (Git directory), el directori de treball (working directory), i l'àrea de preparació (staging area).
 
 ![Fluxe de treball amb git](../.gitbook/assets/git-flujo.png)
 
@@ -32,9 +40,13 @@ Hi ha un únic repositori o punt central que guarda el codi i tothom sincronitza
 
 ![ Flux de treball centralitzat ](https://aulasoftwarelibre.github.io/taller-de-git/images/flujo-centralizado.png)
 
-#### Flux de treball del Gestor deIntegracions <a href="#flujo-de-trabajo-del-gestor-de-integraciones" id="flujo-de-trabajo-del-gestor-de-integraciones"></a>
+#### Flux de treball del Gestor de Integracions <a href="#flujo-de-trabajo-del-gestor-de-integraciones" id="flujo-de-trabajo-del-gestor-de-integraciones"></a>
 
-En permetre múltiples repositoris remots, en Git és possible tenir un flux de treball on cada desenvolupador tingui accés d'escriptura al seu propi repositori públic i accés de lectura als repositoris de tots els altres. Habitualment, aquest escenari sol incloure un repositori canònic, representant "**oficial**" de el projecte.
+En permetre múltiples repositoris remots, en Git és possible tenir un flux de treball on cada desenvolupador tingui accés d'escriptura al seu propi repositori públic i accés de lectura als repositoris de tots els altres.&#x20;
+
+**Sol·licituds de canvis cap al gestor de integracions (Github)**:
+
+Habitualment, aquest escenari sol incloure un repositori canònic, representant "**oficial**" de el projecte.
 
 ![ Flux de treball del Gestor-de-Integracions ](https://aulasoftwarelibre.github.io/taller-de-git/images/flujo-integracion.png)
 
@@ -44,7 +56,7 @@ Aquest model es va posar molt de moda arran de  GitHub, que es veurà més endav
 
 
 
-#### Flux de treball amb Dictador i tinents  <a href="#flujo-de-trabajo-con-dictador-y-tenientes" id="flujo-de-trabajo-con-dictador-y-tenientes"></a>
+#### Flux de treball amb Dictador i tinents (delegacions) <a href="#flujo-de-trabajo-con-dictador-y-tenientes" id="flujo-de-trabajo-con-dictador-y-tenientes"></a>
 
 És una variant de el flux de treball amb múltiples repositoris. S'utilitza generalment en projectes molt grans, amb centenars de col·laboradors. Un exemple molt conegut és el de el **nucli de Linux**. Uns gestors d'integració s'encarreguen de parts concretes de l'repositori; i s'anomenen tinents. Tots els tinents rendeixen comptes a un gestor d'integració; conegut com el dictador benevolent. El repositori del  dictador benevolent és el repositori de **referència**, del què recuperen (**pull**) tots els col·laboradors.
 
@@ -52,7 +64,7 @@ Aquest model es va posar molt de moda arran de  GitHub, que es veurà més endav
 
 ## Aspectes bàsics de Git  <a href="#aspectos-basicos-de-git" id="aspectos-basicos-de-git"></a>
 
-### **GiT NO ÉS GitHub**
+### **Git NO ÉS GitHub**
 
 Git és un gestor de versions utilitzat primàriament des de la **terminal** pensat per controlar el progrés d'un projecte programari entre diversos components d'un equip i facilitar el seu desenvolupament.
 
@@ -77,10 +89,16 @@ git config --global user.name "Usuari"
 git config --global user.email "usuari@email.com"
 # Configura la terminal per que mostri colors al text
 git config --global color.ui auto
+# configura editor, espera a obrir-lo 
+git config --global core.editor "code --wait"
 ```
 
 {% hint style="info" %}
 Global, indica configuració vàlida per a l'usuari de sistema actual. Al directori personal es desa dins **.gitconfig**
+{% endhint %}
+
+{% hint style="info" %}
+System, es desa la configuració com a part de sistema a `/etc/gitconfig`
 {% endhint %}
 
 El teu nom i correu d'usuari són els que t'identificaran a l'actualitzar el repositori. No has de registrar-te enlloc, només cal que introdueixis els que t'agradin. Però, tot i que no han de ser obligatòriament els de GitHub o la plataforma que utilitzis, **resulta més fàcil identificar-te si fas servir les mateixes credencials**.
@@ -89,7 +107,7 @@ El teu nom i correu d'usuari són els que t'identificaran a l'actualitzar el rep
 
 **Ens ajudarem del següent cheat-sheet, si vols t'ho pots imprimir.**
 
-****[**http://ndpsoftware.com/git-cheatsheet.html**](http://ndpsoftware.com/git-cheatsheet.html)****
+[**http://ndpsoftware.com/git-cheatsheet.html**](http://ndpsoftware.com/git-cheatsheet.html)
 
 #### **git init**
 
@@ -126,7 +144,7 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-****
+
 
 #### **git add**
 
@@ -146,9 +164,9 @@ L'ordre `git mv`,a l'igual que l'ordre POSIX **mv**, ens permet canviar el nom i
 
 #### **git restore**
 
-A l'afegir fitxers per a la següent actualització del repositori passen a estar en estat **staged** (escenificat o preparatds per commit). Això vol dir que, fins que no es faci efectiva l'actualització, els canvis sobre aquests fitxers estan en consideració per a ella.
+A l'afegir fitxers per a la següent actualització del repositori passen a estar en estat **staged** (escenificat o preparats per commit). Això vol dir que, fins que no es faci efectiva l'actualització, els canvis sobre aquests fitxers estan en consideració per a ella.
 
-Si decidíssim que no volem afegir alguns dels fitxers a la següent actualització, podem usar l'ordre git restore --staged \<fitxers> per no incloure'ls però que conservin els canvis:
+Si decidíssim que no volem afegir alguns dels fitxers a la següent actualització, podem usar l'ordre `git restore --staged <fitxers>` per no incloure'ls però que conservin els canvis:
 
 ```sh
 git status
@@ -194,20 +212,19 @@ Afegit el **commit A**, el repositori quedaria així:
 REPO:  O---A--->
 ```
 
-&#x20; ****  \
-****
+&#x20;&#x20;
 
-L'últim commit realitzat( A en aquest cas) rep el nom de **HEAD.**
+L'últim commit realitzat( A en aquest cas) rep el nom de **HEAD** i  queda emmagatzemat al directori `.git`.
 
 {% hint style="info" %}
 **ATENCIÓ !:** Desfer aquests canvis és molt difícil, molt més treballant amb un repositori remot (veure següent apartat). Tria molt bé quins canvis vols deixar reflectits en els  commits.
 {% endhint %}
 
-****
+
 
 #### **git log**
 
-Segons anem fent commits, aquests es van guardant en el fitxer .git per registrar l'evolució de l'repositori.
+Segons anem fent **commits**, aquests es van guardant en el fitxer .git per registrar l'evolució de l'repositori.
 
 Si executem `git log` accedim una interfície en la qual podem llegir els commits realitzats fins al moment:
 
@@ -278,7 +295,7 @@ REMOT:  O--------------->
 LOCAL:  O---A---B---C--->
 ```
 
-&#x20;  ****  &#x20;
+&#x20; &#x20;
 
 Si fem push, l'estat canviaria a el següent:
 
@@ -289,7 +306,7 @@ REMOT:  O---A---B---C--->
 LOCAL:  O---A---B---C--->
 ```
 
-&#x20;****&#x20;
+&#x20;
 
 Amb aquest gràfic podem apreciar dues coses molt importants:
 
@@ -313,8 +330,8 @@ LOCAL1:  O---A---B---C------->
 LOCAL2:  O---A---B---C---D--->
 ```
 
-&#x20;     ****      \
-****
+&#x20;     \
+
 
 Com podem veure, **local2 ha fet el commit D i push a màster**, de manera que el remot està actualitzat amb el seu local, però no amb el de local1.Per esmenar això, **local1 fa pull** abans de seure a treballar i l'estat dels dipòsits passaria a ser el següent:
 
@@ -327,7 +344,7 @@ LOCAL1:  O---A---B---C---D--->
 LOCAL2:  O---A---B---C---D--->
 ```
 
-&#x20;    ****    &#x20;
+&#x20;   &#x20;
 
 Ara local1 pot posar-se a treballar coneixent tots els canvis realitzats per local2.
 
@@ -350,7 +367,7 @@ Prenguem com a exemple un repositori en el qual màster, l'única branca que el 
 REPO:  O---A---B--->
 ```
 
-&#x20;  ****  &#x20;
+&#x20; &#x20;
 
 Ara fem `git checkout -b dev` per a crear la branca dev i fem en ella un commit C:
 
@@ -361,7 +378,7 @@ REPO: master:  O---A---B----->
                    dev:  C--->
 ```
 
-&#x20;   ****   &#x20;
+&#x20;  &#x20;
 
 Amb aquest gràfic podem apreciar dues coses molt importants:
 
@@ -378,7 +395,7 @@ REPO: master:  O---A---B---C---D--->
                          fi
 ```
 
-&#x20;          ****          &#x20;
+&#x20;         &#x20;
 
 #### **git branch**
 
@@ -437,7 +454,7 @@ Per a això, ens col·loquem en la branca que volem actualitzar i executem **`gi
 
 Prenguem com a exemple el següent repositori:
 
-&#x20; **** &#x20;
+&#x20;&#x20;
 
 ```sh
                init
@@ -516,8 +533,8 @@ Date:   Wed Oct 9 18:51:30 2019 +0200
     C
 ```
 
-****\
-****
+\
+
 
 Tingues en compte que, en el log, els commits C 'i E' apareixen com C i E respectivament.
 
@@ -579,8 +596,8 @@ Després d'iniciar la PR, els administradors del repositori original  han de com
 
 ### &#x20;**MALES PRÀCTIQUES**
 
-****\
-****A l'hora d'afegir fitxers a el repositori per al següent commit, executar l'ordre `git add.` sense comprovar prèviament què s'està actualitzant amb **`git status`** pots (molt probablement) afegir a l'repositori fitxers actualitzats parcialment que no estan preparats per a ser registrats.
+\
+A l'hora d'afegir fitxers a el repositori per al següent commit, executar l'ordre `git add.` sense comprovar prèviament què s'està actualitzant amb **`git status`** pots (molt probablement) afegir a l'repositori fitxers actualitzats parcialment que no estan preparats per a ser registrats.
 
 En projectes molt grans i complexos és mala pràctica fer push a màster directament. L'ideal és crear una branca de desenvolupament sobre la qual anar registrant commits i fer merge sobre màster quan es vulgui avançar una aversió a ella, ja que ha de ser la branca d'actualitzacions estables.
 
