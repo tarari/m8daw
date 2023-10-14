@@ -62,7 +62,7 @@ adduser ftp --shell /sbin/nologin --home /var/ftp
 echo "yes"> /etc/pure-ftpd/conf/DontResolve
 ```
 
-__
+
 
 ### **Directives de configuració**
 
@@ -83,7 +83,7 @@ cd /etc/pure-ftpd/auth
 ln -s ../conf/PureDB 50pure
 ```
 
-__
+
 
 #### **Altres directives**
 
@@ -92,14 +92,14 @@ Directives de configuració més importants que utilitzarem.
 Les directives de configuració, són fitxers que es troben al directori:
 
 `/etc/pure-ftpd/conf`\
-``
+
 
 Si alguna de les directives esmentades a continuació no existeix, hi haurem de crear un fitxer amb el nom d'aquesta directiva i emmagatzemar dins d'ell, els paràmetres corresponents a aquesta directiva.
 
 Una de les característiques que volem, és que els usuaris no puguin sortir del seu directori home:
 
 **ChrootEveryone yes**\
-****
+
 
 ```bash
 # Si aquesta directiva no està creada la crearem amb:
@@ -113,12 +113,12 @@ echo "yes">/etc/pure-ftpd/conf/ChrootEveryone
 Una altra de les característiques que ha de posseir el servidor ftp és que disposi d'una zona de descàrrega pública (usuaris anonymous). Per a això hem d'acceptar connexions anònimes, amb el que hi ha d'haver la següent línia: **NoAnonymous no**
 
 `echo "no"> /etc/pure-ftpd/conf/NoAnonymous`\
-``
+
 
 Si volem que només permeti l'accés a usuaris anònims haurem de posar també la directiva:
 
 `echo "yes"> /etc/pure-ftpd/conf/AnonymousOnly`\
-``
+
 
 Si volem tenir **usuaris virtuals** (seran usuaris registrats, però que no tenen compte de shell en el sistema), hem d'assegurar que la línia a continuació existeix i no està comentada.
 
@@ -134,12 +134,12 @@ Per evitar que algun usuari per distracció (o maliciosament) ens pugui omplir e
 per exemple podríem posar una Quota límit de 400 fitxers i 50 MB:
 
 `echo "400 50">/etc/pure-ftpd/conf/Quota`\
-``
+
 
 Si volem que automàticament es creuen els directoris home dels usuaris, la primera vegada que es loguean ho farem amb:
 
 `echo "yes"> /etc/pure-ftpd/conf/CreateHomeDir`\
-``
+
 
 Per posar màscares per defecte s'utilitza la directiva **umask.**En aquesta directiva s'indica mitjançant dos nombres **separats per un espai** els permisos per a fitxers i per directoris.
 
@@ -205,7 +205,7 @@ La gestió dels usuaris es realitza amb la comanda **pure-pw.**Aquest ens permet
 Per veure tots els paràmetres disponibles, executarem:
 
 `pure-pw --help`\
-``
+
 
 Per exemple podríem crear un usuari "adolfo" el directori fos / home / adolfo:
 
@@ -256,7 +256,7 @@ Per esborrar un usuari haurem d'executar:
 `pure-pw userdel adolfo`
 
 _`# Atenció: el seu directori personal no s'esborrarà.`_\
-``_`# Haurem de esborrar-a mà:`_\
+_`# Haurem de esborrar-a mà:`_\
 `rm -rf / home / ftpusuarios / adolfo`
 
 #### **Modificació de contrasenyes**
@@ -285,7 +285,7 @@ _# Per exemple per adolfo:_\
 Es recomana consultar l'ajuda en la línia de comandes amb:
 
 `man pure-pw`\
-``
+
 
 **gestió del servei**
 
@@ -294,7 +294,7 @@ per reiniciar el servei pure-ftpd:
 `service pure-ftpd restart`
 
 `systemctl restart pure-ftpd`\
-``
+
 
 per veure la llista d'usuaris que estan connectats al FTP:
 

@@ -25,7 +25,7 @@ Segons la Viquipèdia
 
 _És un estàndard que té per objectiu aconseguir interconnectar sistemes de procedència diferent perquè aquests poguessin intercanviar informació sense cap tipus d'impediments a causa dels protocols amb els que aquests operaven de forma pròpia segons el seu fabricant._
 
-![Model capes OSI](.gitbook/assets/osi\_model\_v1.svg)
+![Model capes OSI](.gitbook/assets/OSI\_Model\_v1.svg)
 
 El model de capes OSI, representa un estandar però serveix de referència per estudiar un procés de COMUNICACIÓ.&#x20;
 
@@ -51,7 +51,7 @@ Tot aquest procediment es realitza de forma immediata (o no) de manera que si he
 
 Les dades passen en sentit descendent a través de les capes transformant-se ( encapsulació ) fins poder arribar al medi físic on es transmetre a l'equip de destinació a través d'impulsos elèctrics. En arribar a la destinació es procedeix de nou a encapsular segons el protocol de cada capa per arribar finalment a destinació.
 
-![Nivells OSI en una comunicació](.gitbook/assets/osi.png)
+![Nivells OSI en una comunicació](.gitbook/assets/OSI.png)
 
 ## SSH. Gestió remota
 

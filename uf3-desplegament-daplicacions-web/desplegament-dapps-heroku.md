@@ -11,7 +11,7 @@ El desplegament d'aplicacions php web sobre Heroku obliga als següents requerim
 
 Suposant que ja tenim el projecte que volem desplegar, ens col·loquem al seu directori.
 
-```text
+```
 cd projecte
 
 ```
@@ -75,7 +75,7 @@ CLEARDB_DATABASE_URL: mysql://b9f7f41a06f314:2aabd0d1@us-cdbr-iron-east-01.clear
 
 O anem al dashboard de l'aplicació al navegador:
 
-![Settings del dyno de l&apos;aplicaci&#xF3;](../.gitbook/assets/captura-de-pantalla-2020-03-31-a-les-15.29.12.png)
+![Settings del dyno de l'aplicació](<../.gitbook/assets/Captura de Pantalla 2020-03-31 a les 15.29.12.png>)
 
 ### Add-on mysql
 
@@ -143,4 +143,3 @@ git commit -am "Heroku db config"
 git push heroku master
 heroku open
 ```
-

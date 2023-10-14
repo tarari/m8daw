@@ -21,7 +21,7 @@ Ens podem assegurar un ecosistema que funcioni independentment del lloc on repro
 \
 Podem dir als contenidors tot el que necessita per treballar, totes les dependències que cal descarregar i instal·lar per executar l'aplicació. **Aquest procés es fa amb un Dockerfile.**
 
-****
+
 
 Docker té quatre eines principals que ofereix per dur a terme les tasques:
 

@@ -603,4 +603,4 @@ En projectes molt grans i complexos és mala pràctica fer push a màster direct
 
 ### Workflow col·laboratiu
 
-![Protocol d'ús del treball col·laboratiu](../.gitbook/assets/git-workflow-col-laboratiu.png)
+![Protocol d'ús del treball col·laboratiu](<../.gitbook/assets/git -workflow col·laboratiu.png>)
