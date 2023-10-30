@@ -8,7 +8,7 @@ description: Servidor HTTP
 
 Com a `sudoer`
 
-```text
+```
  apt -y install apache2
 ```
 
@@ -20,7 +20,7 @@ Un servidor apache proveeix servei web potencialment a molts dominis d'internet.
 
 Mirem com quedaria si per exemple creem un fitxer p**rova.conf** que dona servei a un hipotètic domini **prova.local**:
 
-```text
+```
 <VirtualHost *:80>
     ServerName prova.local
     ServerAdmin webmaster@prova.local
@@ -31,15 +31,15 @@ Mirem com quedaria si per exemple creem un fitxer p**rova.conf** que dona servei
 </VirtualHost>
 ```
 
-Caldria després habilitar el nou virtualhost
+Caldria després habilitar el nou virtualhost (això és equivalent a crear un enllaç simbòlic des de _sites-available_ a _sites-enabled_
 
-```text
+```
 a2ensite prova.conf
 ```
 
 i reiniciar o recarregar la nova configuració
 
-```text
+```
 systemctl restart apache2
 -o-
 systemctl reload apache2
@@ -57,14 +57,14 @@ Virtual Host Prova
 </html>
 ```
 
-Modifiqueu, per provar,  afegint la següent línia al fitxer **`/etc/hosts`**, això ens permet resoldre diversos noms DNS amb la mateixa IP,  provem en local \(127.0.0.1\)
+Modifiqueu, per provar,  afegint la següent línia al fitxer **`/etc/hosts`**, això ens permet resoldre diversos noms DNS amb la mateixa IP,  provem en local (127.0.0.1). Això passa ja que el servei resolver de DNS primer consulta als fitxers locals (files en `/etc/nsswitch.conf`)
 
 ```markup
 127.0.0.1     localhost
 127.0.0.1     prova.local
 ```
 
-Al teu navegador local introdueix l'adreça **`http://prova.local`** i comprova.
+Al teu navegador local introdueix l'adreça **`http://prova.local`** i comprova que el teu site està disponible.
 
 ## Redireccionament cap a lloc segur
 
@@ -74,15 +74,13 @@ Si volem que el noste site ens reenviï cap a lloc segur https, si el tenim impl
 Redirect permanent / https://domini.com
 ```
 
-També es pot fer a través de fitxers .htaccess, en cas que no podem modificar el VirtualHost, si habilitem la reescriptura de URL:
+També es pot fer a través de fitxers `.htaccess`, en cas que no podem modificar el **VirtualHost**, si habilitem la reescriptura de URL:
 
 ```markup
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://domini.com/$1 [L,R=301]
 ```
-
-
 
 
 
