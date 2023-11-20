@@ -8,6 +8,8 @@ description: Servidor de FTP (Debian 12)
 
 ## Usuaris virtuals&#x20;
 
+En l'allotjament compartit de llocs web, molt sovint es necessita independitzar el sistema operatiu i els seus comptes del servei que estem oferint **http** i **ftp**. Vsftpd ho soluciona a través dels usuaris virtuals i la utilitat **db\_util** de vsftd.
+
 Per crear usuaris virtuals amb el servidor FTP vsftpd en Debian, seguirem els següents passos:
 
 1.  **Instal·lar vsftpd:** Assegura't que tens vsftpd instal·lat al teu sistema Debian. Si no és així, pots instal·lar-lo amb la comanda:
