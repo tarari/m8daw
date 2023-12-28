@@ -1,6 +1,6 @@
 ---
 description: >-
-  En aquest mòdul M8 estudiarem el procesos necessaris per realitzar ldel
+  En aquest mòdul M8 estudiarem el procesos necessaris per realitzar el
   desplegament de l'aplicació web i el seu entorn, prenent consciència de totes
   les tecnologies que hi són necessàries.
 ---
