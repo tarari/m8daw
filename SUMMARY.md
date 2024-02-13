@@ -12,6 +12,7 @@
   * [Comandos OpenSSL](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./comandos-openssl.md)
   * [Servidors ftp](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./servidors-ftp.md)
 * [VSFTPD](uf1.servidors-web-i-de-transferencia-de-fitxers/vsftpd.md)
+* [FAQS vsftpd](uf1.servidors-web-i-de-transferencia-de-fitxers/faqs-vsftpd.md)
 
 ## UF3 Desplegament d'aplicacions web
 
