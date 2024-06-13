@@ -16,6 +16,7 @@
 
 ## UF3 Desplegament d'aplicacions web
 
+* [Verificació del desplegament](uf3-desplegament-daplicacions-web/verificacio-del-desplegament.md)
 * [DNS](uf3-desplegament-daplicacions-web/uf3.desplegament-daplicacions-web.md)
 
 ## UF4 Control de versions i documentació
