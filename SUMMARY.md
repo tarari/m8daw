@@ -21,5 +21,6 @@
 
 ## UF4 Control de versions i documentació
 
+* [Elaboració de documentació i sistemes de control de versió](uf4-control-de-versions-i-documentacio/elaboracio-de-documentacio-i-sistemes-de-control-de-versio.md)
 * [Git i workflow](uf4-control-de-versions-i-documentacio/uf4.-control-de-versions-i-documentacio.md)
 * [Autenticació amb SSH](uf4-control-de-versions-i-documentacio/autenticacio-amb-ssh.md)
