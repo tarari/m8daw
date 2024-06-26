@@ -6,6 +6,7 @@
 
 * [UF1. Servidors web i transferència de fitxers.](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./README.md)
   * [Implantació d'arquitectures web](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./implantacio-darquitectures-web.md)
+  * [Administració de servidors web](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./administracio-de-servidors-web.md)
   * [SSH](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./ssh.md)
   * [Apache 2](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./apache-2.md)
   * [Comandos OpenSSL](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./comandos-openssl.md)
