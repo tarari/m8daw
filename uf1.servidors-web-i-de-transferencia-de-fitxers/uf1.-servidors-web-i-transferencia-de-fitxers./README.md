@@ -237,5 +237,3 @@ Atenció. En cas de ser prova local, cal configurar **`/etc/hosts`** per tal que
 
 **`127.0.1.1      exemple.com`**
 {% endhint %}
-
-##
