@@ -4,7 +4,7 @@
 
 ## UF1.Servidors web i de transferència de fitxers
 
-* [UF1. Servidors web i transferència de fitxers.](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./README.md)
+* [Servidors web i transferència de fitxers.](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./README.md)
   * [Implantació d'arquitectures web](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./implantacio-darquitectures-web.md)
   * [Administració de servidors web](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./administracio-de-servidors-web.md)
   * [SSH](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./ssh.md)
@@ -13,8 +13,6 @@
   * [Servidors ftp](uf1.servidors-web-i-de-transferencia-de-fitxers/uf1.-servidors-web-i-transferencia-de-fitxers./servidors-ftp.md)
 * [VSFTPD](uf1.servidors-web-i-de-transferencia-de-fitxers/vsftpd.md)
 * [FAQS vsftpd](uf1.servidors-web-i-de-transferencia-de-fitxers/faqs-vsftpd.md)
-* [UF2. Servidors d'aplicacions](uf1.servidors-web-i-de-transferencia-de-fitxers/uf2.-servidors-daplicacions/README.md)
-  * [Servidors nginx](uf1.servidors-web-i-de-transferencia-de-fitxers/uf2.-servidors-daplicacions/servidors-nginx.md)
 
 ## UF3 Desplegament d'aplicacions web
 
@@ -26,3 +24,8 @@
 * [Elaboració de documentació i sistemes de control de versió](uf4-control-de-versions-i-documentacio/elaboracio-de-documentacio-i-sistemes-de-control-de-versio.md)
 * [Git i workflow](uf4-control-de-versions-i-documentacio/uf4.-control-de-versions-i-documentacio.md)
 * [Autenticació amb SSH](uf4-control-de-versions-i-documentacio/autenticacio-amb-ssh.md)
+
+## UF2 Servidors d'aplicacions
+
+* [UF2. Servidors d'aplicacions](uf2-servidors-daplicacions/uf2.-servidors-daplicacions.md)
+* [Servidors nginx](uf2-servidors-daplicacions/servidors-nginx.md)
