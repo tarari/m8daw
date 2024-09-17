@@ -20,13 +20,20 @@ La majoria dels altres sistemes emmagatzemen la informació com una llista de ca
 
 Git té **tres estats principals** en què es poden trobar els teus arxius: confirmat (**Committed**), modificat (**modified**), i preparat (**staged**).&#x20;
 
-**Confirmat** vol dir que les dades estan emmagatzemades de manera segura en la teva base de dades local (repositori local).&#x20;
+Correspon al directori ocult .**git** les següents correspondències:
 
-Modificat vol dir que has modificat l'arxiu però encara no ho has confirmat a la teva base de dades.&#x20;
+<pre><code>.git
+COMMIT_EDITMSG	config		hooks		info		objects
+<a data-footnote-ref href="#user-content-fn-1">HEAD</a>		description	<a data-footnote-ref href="#user-content-fn-2">index</a>		logs		refs
+</code></pre>
 
-Preparat vol dir que has marcat un arxiu modificat en la seva versió actual perquè vagi en la teva propera confirmació(**staging**).
+**Confirmat o commited** vol dir que les dades estan emmagatzemades de manera segura en la teva base de dades local (repositori local).&#x20;
 
-Això ens porta a les tres seccions principals en el sistema de fitxers d'un projecte de Git: directori de Git (Git directory), el directori de treball (working directory), i l'àrea de preparació (staging area).
+Modificat  vol dir que has modificat l'arxiu però encara no ho has confirmat a la teva base de dades.&#x20;
+
+Preparat vol dir que has marcat un arxiu modificat en la seva versió actual perquè vagi en la teva propera confirmació (**staging**).
+
+Això ens porta a les tres seccions principals en el sistema de fitxers d'un projecte de Git: directori de Git (Git directory), el directori de treball (working directory), i l'àrea de preparació (staging area) Index.
 
 ![Fluxe de treball amb git](../.gitbook/assets/git-flujo.png)
 
@@ -604,3 +611,7 @@ En projectes molt grans i complexos és mala pràctica fer push a màster direct
 ### Workflow col·laboratiu
 
 ![Protocol d'ús del treball col·laboratiu](<../.gitbook/assets/git -workflow col·laboratiu.png>)
+
+[^1]: commited
+
+[^2]: Staging
